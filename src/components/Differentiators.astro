@@ -1,0 +1,52 @@
+---
+import { getLanguage, t } from '../i18n/utils';
+
+const lang = getLanguage(Astro.url);
+
+const items = [
+  {
+    icon: '🚚',
+    title: t(lang, 'differentiator1Title'),
+    description: t(lang, 'differentiator1Desc')
+  },
+  {
+    icon: '📊',
+    title: t(lang, 'differentiator2Title'),
+    description: t(lang, 'differentiator2Desc')
+  },
+  {
+    icon: '🔒',
+    title: t(lang, 'differentiator3Title'),
+    description: t(lang, 'differentiator3Desc')
+  },
+  {
+    icon: '⚡',
+    title: t(lang, 'differentiator4Title'),
+    description: t(lang, 'differentiator4Desc')
+  }
+];
+---
+
+<section class="py-20 md:py-28 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+  <div class="container mx-auto px-6 lg:px-20">
+    <div class="text-center mb-14">
+      <p class="text-sm uppercase tracking-[0.3em] text-primary font-semibold mb-3">Clientky</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t(lang, 'differentiatorsTitle')}</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">{t(lang, 'differentiatorsSubtitle')}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {items.map((item) => (
+        <div class="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg hover:-translate-y-1 transition-transform duration-300">
+          <div class="text-3xl mb-4">{item.icon}</div>
+          <h3 class="text-2xl font-semibold text-gray-900 mb-3">{item.title}</h3>
+          <p class="text-gray-600 leading-relaxed">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
+

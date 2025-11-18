@@ -1,0 +1,41 @@
+---
+import { getLanguage, t } from '../i18n/utils';
+
+const lang = getLanguage(Astro.url);
+
+const roadmapItems = [
+  t(lang, 'roadmapItem1'),
+  t(lang, 'roadmapItem2'),
+  t(lang, 'roadmapItem3'),
+  t(lang, 'roadmapItem4'),
+  t(lang, 'roadmapItem5'),
+  t(lang, 'roadmapItem6')
+];
+---
+
+<section class="py-20 md:py-28 bg-gray-900 text-white">
+  <div class="container mx-auto px-6 lg:px-20">
+    <div class="text-center mb-12">
+      <p class="text-sm uppercase tracking-[0.3em] text-primary font-semibold mb-3">Roadmap</p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">{t(lang, 'roadmapTitle')}</h2>
+      <p class="text-lg text-white/80 max-w-3xl mx-auto">{t(lang, 'roadmapSubtitle')}</p>
+    </div>
+
+    <div class="space-y-6">
+      {roadmapItems.map((item, index) => (
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center text-sm font-bold">
+            {index + 1}
+          </div>
+          <div class="flex-1 border border-white/10 rounded-2xl px-6 py-4 bg-white/5">
+            <p class="text-lg font-semibold">{item}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
+

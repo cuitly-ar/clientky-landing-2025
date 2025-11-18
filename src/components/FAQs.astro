@@ -1,0 +1,158 @@
+---
+import { getLanguage, t } from '../i18n/utils';
+
+const lang = getLanguage(Astro.url);
+const isSpanish = lang === 'es';
+const faqs = [
+  {
+    question: isSpanish ? '¿Para quién es este servicio?' : 'Who is this service for?',
+    answer: isSpanish
+      ? 'Para creadores, emprendedores, artistas, negocios locales, influencers o cuentas personales que buscan crecer rápido y de forma segura en Instagram o TikTok.'
+      : 'Creators, entrepreneurs, artists, local businesses, influencers or personal accounts who want to grow fast and safely on Instagram or TikTok.'
+  },
+  {
+    question: isSpanish ? '¿Qué necesito para empezar?' : 'What do I need to get started?',
+    answer: isSpanish
+      ? 'Solo tu usuario de Instagram o TikTok. No pedimos tu contraseña ni acceso directo; seguís usando tu cuenta con normalidad.'
+      : 'Just your Instagram or TikTok username. We never ask for your password or access — you keep full control of your account.'
+  },
+  {
+    question: isSpanish ? '¿El engagement es real?' : 'Is the engagement real?',
+    answer: isSpanish
+      ? 'Sí. Trabajamos con estrategias seguras y proveedores verificados que generan interacciones auténticas. No usamos bots ni cuentas falsas.'
+      : 'Yes. We work with safe strategies and vetted partners that deliver authentic interactions. No bots or fake accounts.'
+  },
+  {
+    question: isSpanish ? '¿Cuántos seguidores puedo ganar?' : 'How many followers can I gain?',
+    answer: isSpanish
+      ? 'Depende del plan que elijas. Nuestros paquetes van desde unos cientos hasta varios miles por mes y pueden escalar según tu actividad.'
+      : 'It depends on the plan you pick. Packages range from a few hundred to several thousand followers per month and scale with your activity.'
+  },
+  {
+    question: isSpanish ? '¿Qué incluye cada plan?' : 'What does each plan include?',
+    answer: isSpanish
+      ? 'Todos los planes incluyen seguidores, likes y views mensuales. Growth y Pro suman comentarios reales, prioridad de entrega, reportes y sugerencias personalizadas.'
+      : 'Every plan includes monthly followers, likes and views. Growth and Pro add real comments, delivery priority, reporting and tailored suggestions.'
+  },
+  {
+    question: isSpanish ? '¿Puedo usarlo en varias cuentas?' : 'Can I use it on more than one account?',
+    answer: isSpanish
+      ? 'Sí. Podés contratar para una o varias cuentas simultáneamente (cada cuenta necesita su plan).'
+      : 'Yes. You can run it on one or multiple accounts simultaneously (each account needs its own plan).'
+  },
+  {
+    question: isSpanish ? '¿Cómo funciona exactamente?' : 'How does the service work exactly?',
+    answer: isSpanish
+      ? 'Según tu plan enviamos seguidores, likes, views y comentarios reales cada mes, cuidando el ritmo de entrega y optimizando tu visibilidad.'
+      : 'Based on your plan we deliver real followers, likes, views and comments every month, controlling the delivery pace and boosting visibility.'
+  },
+  {
+    question: isSpanish ? '¿Es seguro para mi cuenta?' : 'Is it safe for my account?',
+    answer: isSpanish
+      ? '100% seguro. No pedimos contraseñas ni realizamos acciones riesgosas. Tu cuenta queda siempre bajo tu control.'
+      : '100% safe. We never request passwords or perform risky actions. You keep full control of your account at all times.'
+  },
+  {
+    question: isSpanish ? '¿Cuándo veo resultados?' : 'When will I see results?',
+    answer: isSpanish
+      ? 'Los primeros resultados llegan en 24–48 horas. Dependiendo del plan, el crecimiento se entrega semanalmente o distribuido durante el mes.'
+      : 'You typically see the first results within 24–48 hours. Depending on the plan, growth is delivered weekly or spread across the month.'
+  },
+  {
+    question: isSpanish ? '¿Puedo pausar o cancelar?' : 'Can I pause or cancel?',
+    answer: isSpanish
+      ? 'Sí. Podés cancelarlo en cualquier momento desde tu panel o escribiéndonos a soporte. Sin contratos ni permanencias.'
+      : 'Yes. You can cancel anytime from your dashboard or by contacting support. No contracts or lock-ins.'
+  },
+  {
+    question: isSpanish ? '¿Qué pasa si pierdo seguidores?' : 'What if I lose some followers later?',
+    answer: isSpanish
+      ? 'Incluimos garantía de reposición. Si ves una caída inusual nos avisás y reponemos sin costo.'
+      : 'All plans include a replacement guarantee. If you notice an unusual drop just let us know and we\'ll top you up at no cost.'
+  },
+  {
+    question: isSpanish ? '¿Puedo cambiar de plan?' : 'Can I upgrade or downgrade later?',
+    answer: isSpanish
+      ? 'Sí, podés subir o bajar de plan cuando quieras. El cambio se aplica en el siguiente ciclo de facturación.'
+      : 'Yes, you can move up or down anytime. The change applies on your next billing cycle.'
+  },
+  {
+    question: isSpanish ? '¿Necesito publicar contenido?' : 'Do I need to post content?',
+    answer: isSpanish
+      ? 'No es obligatorio, pero ayuda muchísimo. Las cuentas activas mantienen más engagement y crecen más rápido.'
+      : 'It’s not mandatory, but it helps a lot. Active accounts keep higher engagement and grow faster.'
+  },
+  {
+    question: isSpanish ? '¿Ofrecen soporte personalizado?' : 'Do you offer personalized support?',
+    answer: isSpanish
+      ? 'Sí. Los planes Growth y Pro incluyen soporte prioritario y sugerencias personalizadas para optimizar tus resultados.'
+      : 'Yes. Growth and Pro include priority support plus personalized recommendations to optimize your results.'
+  }
+];
+---
+
+<section id="faqs" class="py-20 md:py-28 bg-gray-50">
+  <div class="container mx-auto px-6 lg:px-20">
+    <div class="text-center mb-12">
+      <p class="text-sm uppercase tracking-[0.3em] text-primary font-semibold mb-3">FAQ</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t(lang, 'faqTitle')}</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        {t(lang, 'faqSubtitle')} <a href="mailto:support@clientky.com" class="text-primary font-semibold hover:underline">{t(lang, 'faqContact')} support@clientky.com</a>
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <div class="faq-item border border-gray-200 rounded-2xl bg-white shadow-sm" data-faq-item>
+          <button type="button" class="w-full flex items-center justify-between gap-6 px-6 py-4" data-faq-trigger>
+            <div class="text-left">
+              <p class="text-sm uppercase tracking-[0.3em] text-gray-400">0{index + 1}</p>
+              <h3 class="text-lg font-semibold text-gray-900">{faq.question}</h3>
+            </div>
+            <span class="faq-icon text-2xl text-primary transition-transform duration-200">+</span>
+          </button>
+          <div class="faq-content px-6 pb-6 hidden text-gray-600 leading-relaxed">
+            {faq.answer}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const faqItems = document.querySelectorAll('[data-faq-item]');
+  faqItems.forEach((item, index) => {
+    const trigger = item.querySelector('[data-faq-trigger]');
+    const content = item.querySelector('.faq-content');
+    const icon = item.querySelector('.faq-icon');
+
+    const closeItem = (target) => {
+      target.classList.remove('open');
+      target.querySelector('.faq-content')?.classList.add('hidden');
+      target.querySelector('.faq-icon')?.classList.remove('rotate-45');
+    };
+
+    const openItem = (target) => {
+      target.classList.add('open');
+      target.querySelector('.faq-content')?.classList.remove('hidden');
+      target.querySelector('.faq-icon')?.classList.add('rotate-45');
+    };
+
+    trigger?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      faqItems.forEach((el) => closeItem(el));
+      if (!isOpen) {
+        openItem(item);
+      }
+    });
+
+    if (index === 0) {
+      openItem(item);
+    }
+  });
+</script>
+
+
+
+

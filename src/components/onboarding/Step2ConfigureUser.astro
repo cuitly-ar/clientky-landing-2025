@@ -1,0 +1,125 @@
+---
+import { getLanguage, t } from '../../i18n/utils';
+
+const lang = getLanguage(Astro.url);
+---
+
+<div class="max-w-2xl">
+  <div class="mb-8">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+      ⚡ {t(lang, 'installAndGrow')}
+    </h2>
+    <p class="text-secondary font-semibold text-sm">
+      {t(lang, 'promoCode')}
+    </p>
+  </div>
+  
+  <form id="user-form" class="space-y-6">
+    <!-- Username Field -->
+    <div>
+      <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
+        <span id="username-label">{t(lang, 'igUsername')}</span>
+      </label>
+      <div class="relative">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" id="platform-icon">
+          📸
+        </span>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="selenagomez"
+          required
+          class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 outline-none"
+        />
+      </div>
+      <div class="mt-2 flex gap-3">
+        <button type="button" class="platform-toggle text-sm px-4 py-2 rounded-lg border-2 border-primary bg-primary text-white font-medium" data-platform="instagram">
+          📸 Instagram
+        </button>
+        <button type="button" class="platform-toggle text-sm px-4 py-2 rounded-lg border-2 border-gray-300 text-gray-700 font-medium hover:border-primary transition-colors" data-platform="tiktok">
+          🎵 TikTok
+        </button>
+      </div>
+    </div>
+    
+    <!-- Email Field -->
+    <div>
+      <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+        {t(lang, 'email')}
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder={t(lang, 'emailPlaceholder')}
+        required
+        class="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 outline-none"
+      />
+    </div>
+    
+    <!-- Continue Button -->
+    <button
+      type="submit"
+      class="w-full bg-gradient-to-r from-primary to-secondary text-white py-4 rounded-xl font-semibold shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+    >
+      {t(lang, 'continue')}
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+      </svg>
+    </button>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('user-form') as HTMLFormElement;
+  const usernameInput = document.getElementById('username') as HTMLInputElement;
+  const emailInput = document.getElementById('email') as HTMLInputElement;
+  const platformToggles = document.querySelectorAll('.platform-toggle');
+  const usernameLabel = document.getElementById('username-label');
+  const platformIcon = document.getElementById('platform-icon');
+  
+  let selectedPlatform = 'instagram';
+  
+  // Platform toggle
+  platformToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const platform = toggle.getAttribute('data-platform');
+      selectedPlatform = platform || 'instagram';
+      
+      // Update button styles
+      platformToggles.forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-white', 'border-primary');
+        btn.classList.add('border-gray-300', 'text-gray-700');
+      });
+      toggle.classList.add('bg-primary', 'text-white', 'border-primary');
+      toggle.classList.remove('border-gray-300', 'text-gray-700');
+      
+      // Update label and icon
+      if (platform === 'tiktok') {
+        if (usernameLabel) usernameLabel.textContent = document.documentElement.lang === 'es' ? 'Su nombre de usuario TikTok' : 'Your TikTok username';
+        if (platformIcon) platformIcon.textContent = '🎵';
+      } else {
+        if (usernameLabel) usernameLabel.textContent = document.documentElement.lang === 'es' ? 'Su nombre de usuario Instagram' : 'Your Instagram username';
+        if (platformIcon) platformIcon.textContent = '📸';
+      }
+    });
+  });
+  
+  // Form submission
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Store user data
+    const userData = {
+      username: usernameInput?.value,
+      email: emailInput?.value,
+      platform: selectedPlatform
+    };
+    sessionStorage.setItem('userData', JSON.stringify(userData));
+    
+    // Navigate to next step
+    window.dispatchEvent(new CustomEvent('onboarding:navigate', { detail: { step: 3 } }));
+  });
+</script>
+

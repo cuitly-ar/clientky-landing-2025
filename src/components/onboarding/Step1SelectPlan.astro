@@ -1,0 +1,194 @@
+---
+import { getLanguage, t } from '../../i18n/utils';
+import { getPlans } from '../../data/plans';
+
+const lang = getLanguage(Astro.url);
+const plans = getPlans(lang);
+const landingHref = lang === 'en' ? '/en/' : '/';
+const currencyFormatter = new Intl.NumberFormat(
+  lang === 'es' ? 'es-AR' : 'en-US',
+  { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }
+);
+---
+
+<div class="bg-white/90 rounded-3xl border border-gray-100 p-6 md:p-8 shadow-2xl space-y-8">
+  <div class="space-y-3">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{t(lang, 'selectPlanTitle')}</h2>
+    <p class="text-gray-600">{t(lang, 'selectPlanSubtitle')}</p>
+    <div class="bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-2xl p-4 text-sm text-gray-700">
+      <p>
+        {t(lang, 'planDetailsNote')}{' '}
+        <a href={landingHref} class="text-primary font-semibold hover:underline" target="_blank" rel="noreferrer">
+          {t(lang, 'planDetailsLink')}
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <div class="flex flex-col lg:flex-row lg:items-center gap-4">
+    <div class="relative inline-flex bg-gray-100 rounded-full shadow-inner border border-white/40 p-1 min-w-[260px]" data-plan-billing-toggle>
+      <span class="toggle-indicator absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-full bg-gradient-to-r from-primary to-secondary transition-all duration-300"></span>
+      <button type="button" class="plan-billing relative z-10 flex-1 px-6 py-2 text-sm font-semibold rounded-full text-white" data-billing="monthly">
+        {t(lang, 'monthlyBilling')}
+      </button>
+      <button type="button" class="plan-billing relative z-10 flex-1 px-6 py-2 text-sm font-semibold rounded-full text-gray-500" data-billing="annual">
+        {t(lang, 'annualBilling')}
+      </button>
+    </div>
+    <p class="text-sm text-gray-500">{t(lang, 'billingToggleHint')}</p>
+  </div>
+
+  <div class="flex gap-4 overflow-x-auto pb-2">
+    {plans.map((plan) => (
+      <div
+        class={`plan-card relative rounded-3xl border transition-all duration-300 cursor-pointer bg-white/95 backdrop-blur-sm p-6 flex flex-col items-center text-center min-w-[260px] shrink-0 ${
+          plan.featured ? 'border-primary/60 shadow-[0_15px_50px_rgba(124,58,237,0.25)] ring-1 ring-primary/10' : 'border-gray-200 hover:border-primary/40 hover:shadow-xl'
+        }`}
+        data-plan-card
+        data-plan-id={plan.id}
+        data-plan-name={plan.name}
+        data-plan-monthly={plan.monthlyPrice}
+        data-plan-annual={plan.annualPrice}
+        data-plan-description={plan.description}
+      >
+        {plan.featured && (
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 rounded-full text-xs font-semibold shadow">
+            {t(lang, 'mostPopular')}
+          </div>
+        )}
+        <div class="flex flex-col h-full text-center space-y-5">
+          <div>
+            <p class="text-xs uppercase tracking-[0.3em] text-gray-400">{t(lang, 'selectedPlan')}</p>
+            <h3 class="text-xl font-bold text-gray-900">{plan.name}</h3>
+          </div>
+          <div>
+            <p class="text-3xl font-extrabold text-gray-900" data-plan-price data-monthly={plan.monthlyPrice} data-annual={plan.annualPrice}>
+              {currencyFormatter.format(plan.monthlyPrice)}
+            </p>
+            <p class="text-sm text-gray-500" data-plan-period data-month-label={t(lang, 'perMonth')} data-year-label={t(lang, 'perYear')}>
+              {t(lang, 'perMonth')}
+            </p>
+            <p class="text-xs text-gray-400 mt-1" data-plan-note data-month-label={t(lang, 'billingMonthlyLabel')} data-year-label={t(lang, 'billingAnnualLabel')}>
+              {t(lang, 'billingMonthlyLabel')}
+            </p>
+          </div>
+          <div class="flex-1 flex items-center justify-center">
+            <p class="text-sm text-gray-500 px-4">
+              {plan.featured
+                ? lang === 'es' ? 'Recomendado para crecimientos acelerados con soporte prioritario.' : 'Recommended for accelerated growth with priority support.'
+                : lang === 'es' ? 'Seleccioná el plan y continuá con tu suscripción.' : 'Choose this plan and keep going.'}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            class={`plan-select w-full rounded-2xl py-3 font-semibold transition-all durée-200 ${
+              plan.featured
+                ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:shadow-xl'
+                : 'border-2 border-primary text-primary hover:bg-primary hover:text-white'
+            }`}
+          >
+            {t(lang, 'selectPlan')}
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  const billingButtons = document.querySelectorAll('.plan-billing');
+  const planCards = document.querySelectorAll('[data-plan-card]');
+  const priceElements = document.querySelectorAll('[data-plan-price]');
+  const periodElements = document.querySelectorAll('[data-plan-period]');
+  const noteElements = document.querySelectorAll('[data-plan-note]');
+  const toggleIndicator = document.querySelector('.toggle-indicator');
+  const formatter = new Intl.NumberFormat(
+    document.documentElement.lang === 'es' ? 'es-AR' : 'en-US',
+    { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }
+  );
+  let billing = 'monthly';
+
+  function updatePrices() {
+    billingButtons.forEach((btn) => {
+      const target = btn.getAttribute('data-billing');
+      const isActive = target === billing;
+      btn.classList.toggle('text-white', isActive);
+      btn.classList.toggle('text-gray-500', !isActive);
+    });
+
+    if (toggleIndicator) {
+      toggleIndicator.style.transform = billing === 'monthly' ? 'translateX(0)' : 'translateX(100%)';
+    }
+
+    priceElements.forEach((el) => {
+      const monthly = Number(el.getAttribute('data-monthly'));
+      const annual = Number(el.getAttribute('data-annual'));
+      el.textContent = formatter.format(billing === 'monthly' ? monthly : annual);
+    });
+
+    periodElements.forEach((el) => {
+      const monthLabel = el.getAttribute('data-month-label') || '';
+      const yearLabel = el.getAttribute('data-year-label') || '';
+      el.textContent = billing === 'monthly' ? monthLabel : yearLabel;
+    });
+
+    noteElements.forEach((el) => {
+      const monthLabel = el.getAttribute('data-month-label') || '';
+      const yearLabel = el.getAttribute('data-year-label') || '';
+      el.textContent = billing === 'monthly' ? monthLabel : yearLabel;
+    });
+  }
+
+  billingButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const next = btn.getAttribute('data-billing');
+      if (next && next !== billing) {
+        billing = next;
+        updatePrices();
+      }
+    });
+  });
+
+  updatePrices();
+
+  planCards.forEach((card) => {
+    const selectButton = card.querySelector('.plan-select');
+
+    const selectPlan = () => {
+      const planId = card.getAttribute('data-plan-id');
+      const planName = card.getAttribute('data-plan-name');
+      const monthly = Number(card.getAttribute('data-plan-monthly'));
+      const annual = Number(card.getAttribute('data-plan-annual'));
+      const description = card.getAttribute('data-plan-description');
+      if (!planId || !planName) return;
+
+      planCards.forEach((c) => c.classList.remove('ring-2', 'ring-primary'));
+      card.classList.add('ring-2', 'ring-primary');
+
+      const selectedPlan = {
+        id: planId,
+        name: planName,
+        monthlyPrice: monthly,
+        annualPrice: annual,
+        billing,
+        description
+      };
+
+      sessionStorage.setItem('selectedPlan', JSON.stringify(selectedPlan));
+      window.dispatchEvent(new CustomEvent('onboarding:update-plan', { detail: { plan: selectedPlan } }));
+      window.dispatchEvent(new CustomEvent('onboarding:navigate', { detail: { step: 2 } }));
+    };
+
+    card.addEventListener('click', (event) => {
+      if ((event.target as HTMLElement).closest('button')) return;
+      selectPlan();
+    });
+
+    selectButton?.addEventListener('click', (event) => {
+      event.preventDefault();
+      selectPlan();
+    });
+  });
+</script>
+

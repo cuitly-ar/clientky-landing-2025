@@ -1,0 +1,51 @@
+---
+import type { Language } from '../../i18n/translations';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import Features from '../../components/Features.astro';
+import HowItWorks from '../../components/HowItWorks.astro';
+import DashboardShowcase from '../../components/DashboardShowcase.astro';
+import Differentiators from '../../components/Differentiators.astro';
+import Pricing from '../../components/Pricing.astro';
+import Roadmap from '../../components/Roadmap.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import FAQs from '../../components/FAQs.astro';
+import CTA from '../../components/CTA.astro';
+import Footer from '../../components/Footer.astro';
+import { getLanguage, t } from '../../i18n/utils';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang: forcedLang } = Astro.props;
+const lang = forcedLang ?? getLanguage(Astro.url);
+const title = lang === 'es'
+  ? 'Clientky - Crecimiento Inteligente en Instagram y TikTok con IA'
+  : 'Clientky - Smart Growth on Instagram and TikTok with AI';
+const description = t(lang, 'heroDescription');
+---
+
+<Layout
+  title={title}
+  description={description}
+  lang={lang}
+>
+  <Header />
+  <main>
+    <Hero />
+
+    <Features />
+    <DashboardShowcase />
+    <HowItWorks />
+    <Differentiators />
+    <Pricing />
+    <Roadmap />
+    <Testimonials />
+    <FAQs />
+    <CTA />
+  </main>
+  <Footer />
+</Layout>
+

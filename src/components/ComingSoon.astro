@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { t } from '../i18n/utils';
+import type { Language } from '../i18n/translations';
+
+interface Props {
+  lang: Language;
+  homeHref: string;
+}
+
+const { lang, homeHref } = Astro.props;
+---
+
+<Layout title={`Clientky - ${t(lang, 'comingSoonTitle')}`} description={t(lang, 'comingSoonDescription')} lang={lang}>
+  <section class="min-h-screen bg-gray-50 py-28 px-6 flex items-center justify-center">
+    <div class="max-w-2xl w-full text-center space-y-6 bg-white/80 backdrop-blur border border-gray-100 rounded-3xl p-10 shadow-xl">
+      <p class="text-sm uppercase tracking-[0.4em] text-primary font-semibold">
+        {t(lang, 'comingSoonTag')}
+      </p>
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900">
+        {t(lang, 'comingSoonTitle')}
+      </h1>
+      <p class="text-gray-600">
+        {t(lang, 'comingSoonDescription')}
+      </p>
+      <p class="text-sm text-gray-400">
+        {t(lang, 'comingSoonNote')}
+      </p>
+      <a
+        href={homeHref}
+        class="inline-flex items-center justify-center px-8 py-3 rounded-2xl font-semibold bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:opacity-90 transition"
+      >
+        {t(lang, 'comingSoonBack')}
+      </a>
+    </div>
+  </section>
+</Layout>
+
+

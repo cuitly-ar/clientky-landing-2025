@@ -1,0 +1,21 @@
+---
+import { getLanguage, t } from '../i18n/utils';
+
+const lang = getLanguage(Astro.url);
+const pricingHref = '#precios';
+---
+
+<section class="py-20 md:py-32 bg-gradient-to-r from-primary to-secondary text-white">
+  <div class="container mx-auto px-6 lg:px-20 text-center">
+    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+      {t(lang, 'ctaTitle')}
+    </h2>
+    <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 opacity-90">
+      {t(lang, 'ctaSubtitle')}
+    </p>
+    <a href={pricingHref} class="inline-block bg-white text-primary px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:scale-105 hover:shadow-3xl transition-all duration-300 ease-in-out">
+      {t(lang, 'startNow')}
+    </a>
+  </div>
+</section>
+

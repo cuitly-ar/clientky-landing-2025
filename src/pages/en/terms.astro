@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLanguage, t } from '../../i18n/utils';
+
+const lang = getLanguage(Astro.url);
+const publishedDate = 'November 17, 2025';
+const homeHref = '/en/';
+const termsContent = `Terms of Service for Clientky
+Effective date: ${publishedDate}
+
+ACCEPTANCE OF TERMS
+These Terms of Service constitute a legally binding agreement between you and Clientky ("Company", "we", "us", or "our") regarding your access to and use of clientky.com and any related media channels, mobile sites, or applications (collectively, the "Site"). By accessing the Site you agree that you have read, understood, and agreed to be bound by these Terms. If you do not agree, you must discontinue use immediately.
+
+SUPPLEMENTAL TERMS
+Supplemental terms and policies posted on the Site from time to time are hereby expressly incorporated. We reserve the right to change these Terms at any time by updating the "Last updated" date. It is your responsibility to review these Terms regularly.
+
+INTELLECTUAL PROPERTY
+Unless otherwise indicated, the Site is our proprietary property. The code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics (collectively, the "Content") and the trademarks, service marks, and logos (the "Marks") are owned or licensed by us and are protected by copyright and trademark laws. No Content may be copied, republished, uploaded, publicly displayed, encoded, translated, transmitted, or distributed without our express written permission.
+
+USER REPRESENTATIONS
+By using the Site you represent and warrant that: (1) all registration information you submit will be true, accurate, and complete; (2) you will maintain the accuracy of such information; (3) you have the legal capacity and you agree to comply with these Terms; (4) you are not a minor in your jurisdiction; (5) you will not access the Site through automated or non-human means; (6) you will not use the Site for any illegal or unauthorized purpose; and (7) your use will not violate any applicable law or regulation.
+
+FEES AND PAYMENT
+You may be required to purchase or pay a fee to access some of our services. You agree to provide current, complete, and accurate purchase and account information. We bill purchases through an online billing account. Sales tax will be added as required. Prices may change at any time. All payments shall be in U.S. dollars.
+
+PROHIBITED ACTIVITIES
+You may not access or use the Site for any purpose other than that for which we make the Site available. You agree not to retrieve data or content to create a collection or database without permission, not to engage in any automated use, not to misuse our support services, and not to circumvent, disable, or otherwise interfere with security-related features.
+
+USER GENERATED CONTRIBUTIONS
+The Site may invite you to chat, contribute, or participate in blogs, message boards, or other functionality. You warrant that you own or have the necessary rights to any contributions and that they do not infringe on the rights of third parties.
+
+SITE MANAGEMENT
+We reserve the right to monitor the Site for violations of these Terms, to take appropriate legal action, to remove or disable content, and otherwise manage the Site to protect our rights.
+
+PRIVACY POLICY
+Your use of the Site is also governed by our Privacy Policy. Please review it carefully.
+
+TERM AND TERMINATION
+These Terms remain in effect while you use the Site. We reserve the right to deny access to any person for any reason.
+
+DISCLAIMER
+THE SITE IS PROVIDED ON AN AS-IS AND AS-AVAILABLE BASIS. YOU AGREE THAT YOUR USE OF THE SITE AND OUR SERVICES WILL BE AT YOUR SOLE RISK. WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED.
+
+LIMITATIONS OF LIABILITY
+IN NO EVENT WILL WE OR OUR DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT OR INDIRECT DAMAGES ARISING FROM YOUR USE OF THE SITE.
+
+INDEMNIFICATION
+You agree to defend, indemnify, and hold us harmless from any loss, damage, liability, claim, or demand made by any third party due to or arising out of your use of the Site.
+
+MISCELLANEOUS
+These Terms and any policies posted by us constitute the entire agreement between you and us. No joint venture, partnership, employment, or agency relationship is created as a result of these Terms.`;
+---
+
+<Layout title="Clientky - Terms of Service" description="Clientky Terms of Service" lang="en">
+  <main class="min-h-screen bg-gray-50 py-20">
+    <div class="max-w-4xl mx-auto px-6">
+      <article class="bg-white rounded-3xl shadow-xl p-8 md:p-12 space-y-6">
+        <header>
+          <a href={homeHref} class="inline-flex items-center gap-2 text-sm text-primary font-semibold mb-4 hover:opacity-80 transition-opacity">
+            {t(lang, 'backToHome')}
+          </a>
+          <p class="text-sm text-primary font-semibold mb-2">Legal · Clientky</p>
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Terms of Service</h1>
+          <p class="text-gray-500 text-sm">Effective date: {publishedDate}</p>
+        </header>
+        <pre class="whitespace-pre-wrap text-gray-700 leading-relaxed text-sm">{termsContent}</pre>
+      </article>
+    </div>
+  </main>
+</Layout>
+
+
+
+

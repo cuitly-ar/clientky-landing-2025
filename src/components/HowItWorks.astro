@@ -1,0 +1,50 @@
+---
+import { getLanguage, t } from '../i18n/utils';
+
+const lang = getLanguage(Astro.url);
+
+const steps = [
+  {
+    icon: '🧭',
+    title: t(lang, 'howStep1Title'),
+    description: t(lang, 'howStep1Desc')
+  },
+  {
+    icon: '⚙️',
+    title: t(lang, 'howStep2Title'),
+    description: t(lang, 'howStep2Desc')
+  },
+  {
+    icon: '📈',
+    title: t(lang, 'howStep3Title'),
+    description: t(lang, 'howStep3Desc')
+  }
+];
+---
+
+<section class="py-20 md:py-28 bg-gradient-to-b from-white to-gray-50" id="recursos">
+  <div class="container mx-auto px-6 lg:px-20">
+    <div class="text-center mb-16">
+      <p class="text-sm uppercase tracking-[0.3em] text-primary font-semibold mb-3">Workflow</p>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{t(lang, 'howItWorksTitle')}</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">{t(lang, 'howItWorksSubtitle')}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {steps.map((step, index) => (
+        <div class="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 relative">
+          <div class="w-14 h-14 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center text-2xl text-white font-bold mb-6">
+            {step.icon}
+          </div>
+          <p class="text-sm uppercase tracking-[0.2em] text-gray-400 mb-2">0{index + 1}</p>
+          <h3 class="text-2xl font-bold text-gray-900 mb-3">{step.title}</h3>
+          <p class="text-gray-600 leading-relaxed">{step.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
+

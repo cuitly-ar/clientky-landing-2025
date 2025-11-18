@@ -1,0 +1,12 @@
+---
+import DashboardPage from '../components/pages/DashboardPage.astro';
+import ComingSoon from '../components/ComingSoon.astro';
+import { getLanguage } from '../i18n/utils';
+
+const lang = getLanguage(Astro.url);
+const showPrivatePage = import.meta.env.DEV;
+const homeHref = lang === 'en' ? '/en/' : '/';
+---
+
+{showPrivatePage ? <DashboardPage lang={lang} /> : <ComingSoon lang={lang} homeHref={homeHref} />}
+

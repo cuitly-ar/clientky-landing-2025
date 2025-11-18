@@ -1,0 +1,138 @@
+---
+import { getLanguage, t } from '../i18n/utils';
+
+const lang = getLanguage(Astro.url);
+const baseLandingPath = lang === 'en' ? '/en/' : '/';
+
+const legalLinks =
+  lang === 'en'
+    ? [
+        { text: t(lang, 'terms'), href: '/en/terms' },
+        { text: t(lang, 'privacy'), href: '/en/privacy' }
+      ]
+    : [
+        { text: t(lang, 'terms'), href: '/condiciones' },
+        { text: t(lang, 'privacy'), href: '/politicas' }
+      ];
+
+const footerSections = [
+  {
+    title: t(lang, 'services'),
+    links: [
+      { text: t(lang, 'igGrowth'), href: `${baseLandingPath}#instagram` },
+      { text: t(lang, 'ttGrowth'), href: `${baseLandingPath}#tiktok` },
+      { text: t(lang, 'analysis'), href: "#" },
+      { text: t(lang, 'aiMatch'), href: "#" },
+      { text: t(lang, 'experts'), href: "#" }
+    ]
+  },
+  {
+    title: t(lang, 'company'),
+    links: [
+      { text: t(lang, 'aboutUs'), href: "#" },
+      { text: t(lang, 'caseStudies'), href: "#" },
+      { text: t(lang, 'reviews'), href: "#" },
+      { text: t(lang, 'contact'), href: "#" }
+    ]
+  },
+  {
+    title: t(lang, 'resources'),
+    links: [
+      { text: t(lang, 'blog'), href: "#" },
+      { text: t(lang, 'encyclopedia'), href: "#" },
+      { text: t(lang, 'helpCenter'), href: "#" },
+      { text: t(lang, 'pricing'), href: `${baseLandingPath}#precios` }
+    ]
+  },
+  {
+    title: t(lang, 'legal'),
+    links: legalLinks
+  }
+];
+
+const socialLinks = [
+  { name: 'Instagram', icon: '📸', href: 'https://instagram.com' },
+  { name: 'Facebook', icon: '👍', href: 'https://facebook.com' },
+  { name: 'TikTok', icon: '🎵', href: 'https://tiktok.com' }
+];
+---
+
+<footer class="bg-gray-900 text-white py-16">
+  <div class="container mx-auto px-6 lg:px-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+      <!-- Brand Column -->
+      <div>
+        <h3 class="text-2xl font-bold mb-4 relative pb-3">
+          Clientky
+          <span class="absolute bottom-0 left-0 w-10 h-0.5 bg-primary"></span>
+        </h3>
+        <p class="text-gray-400 leading-relaxed">
+          {t(lang, 'footerDescription')}
+        </p>
+      </div>
+      
+      <!-- Footer Links -->
+      {footerSections.map((section) => (
+        <div>
+          <h3 class="text-xl font-bold mb-4 relative pb-3">
+            {section.title}
+            <span class="absolute bottom-0 left-0 w-10 h-0.5 bg-primary"></span>
+          </h3>
+          <ul class="space-y-3">
+            {section.links.map((link) => (
+              <li>
+                <a 
+                  href={link.href} 
+                  class="text-gray-400 hover:text-white transition-colors duration-300"
+                >
+                  {link.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+    
+    <div class="mb-12 rounded-2xl border border-white/10 bg-white/5 p-6 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-xl text-white">
+          ✓
+        </div>
+        <div>
+          <p class="text-white font-semibold">{t(lang, 'verifiedClients')}</p>
+          <p class="text-gray-400 text-sm">{t(lang, 'trustedBy')}</p>
+        </div>
+      </div>
+      <div class="flex flex-col md:items-end">
+        <p class="text-white font-semibold mb-2">{t(lang, 'securePayments')}</p>
+        <img src="/logos/card-logos.png" alt={t(lang, 'cardsAccepted')} class="h-10 object-contain" loading="lazy" />
+      </div>
+    </div>
+    
+    <!-- Footer Bottom -->
+    <div class="pt-8 border-t border-gray-800 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div class="text-gray-400 text-sm">
+        <p>© 2025 Clientky. {t(lang, 'footerMadeWith')}</p>
+      </div>
+      <div class="flex flex-col gap-3 md:flex-row md:items-center md:gap-6 text-sm">
+        <div class="flex items-center gap-3 text-gray-400">
+          <a href={legalLinks[0].href} class="hover:text-white transition-colors duration-200">{t(lang, 'terms')}</a>
+          <span class="text-gray-600">/</span>
+          <a href={legalLinks[1].href} class="hover:text-white transition-colors duration-200">{t(lang, 'privacy')}</a>
+        </div>
+        <div class="flex items-center gap-3 text-gray-400">
+          <span>{t(lang, 'followUs')}:</span>
+          <div class="flex items-center gap-2">
+            {socialLinks.map((social) => (
+              <a href={social.href} class="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition-colors duration-200" aria-label={social.name} target="_blank" rel="noreferrer">
+                {social.icon}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+

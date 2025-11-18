@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLanguage, t } from '../../i18n/utils';
+
+const lang = getLanguage(Astro.url);
+const homeHref = '/en/';
+const publishedDate = 'November 17, 2025';
+const privacyContent = `Privacy Policy for Clientky
+Last updated: ${publishedDate}
+
+ACCEPTANCE OF POLICY
+At Clientky, accessible from clientky.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document describes the types of information that is collected and recorded by Clientky and how we use it.
+
+CONSENT
+By using our website, you hereby consent to our Privacy Policy and agree to its terms.
+
+INFORMATION WE COLLECT
+We collect personal information that you voluntarily provide when registering on the Site, expressing interest in obtaining information about us or our products and services, when participating in activities on the Site, or otherwise contacting us.
+
+HOW WE USE YOUR INFORMATION
+We use the information we collect in various ways, including to operate, maintain, and provide the Site; improve and personalize the experience; understand and analyze how you use the Site; develop new products and services; communicate with you for customer service and marketing; send transactional emails; and detect and prevent fraud.
+
+LOG FILES AND COOKIES
+Clientky follows a standard procedure of using log files and cookies. These files log visitors when they visit websites and help us understand visitor preferences and usage trends.
+
+THIRD-PARTY PRIVACY POLICIES
+Clientky's Privacy Policy does not apply to other advertisers or websites. We advise you to consult the respective Privacy Policies of third-party ad servers for more detailed information.
+
+RETENTION
+We retain personal information for as long as necessary to provide the services you have requested or as otherwise required by law. You may request deletion at any time by contacting us at contact@clientky.com.
+
+CHILDREN'S INFORMATION
+Clientky does not knowingly collect any personally identifiable information from children under the age of 13. If you believe that your child provided this kind of information, please contact us immediately and we will promptly remove it.
+`;
+---
+
+<Layout title="Clientky - Privacy Policy" description="Clientky Privacy Policy" lang="en">
+  <main class="min-h-screen bg-gray-50 py-20">
+    <div class="max-w-4xl mx-auto px-6">
+      <article class="bg-white rounded-3xl shadow-xl p-8 md:p-12 space-y-6">
+        <header>
+          <a href={homeHref} class="inline-flex items-center gap-2 text-sm text-primary font-semibold mb-4 hover:opacity-80 transition-opacity">
+            {t(lang, 'backToHome')}
+          </a>
+          <p class="text-sm text-primary font-semibold mb-2">Legal · Clientky</p>
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Privacy Policy</h1>
+          <p class="text-gray-500 text-sm">Effective date: {publishedDate}</p>
+        </header>
+        <pre class="whitespace-pre-wrap text-gray-700 leading-relaxed text-sm">{privacyContent}</pre>
+      </article>
+    </div>
+  </main>
+</Layout>
+
+
+
+
