@@ -200,7 +200,7 @@ const t = getTranslations(lang);
   </div>
 </section>
 
-<script define:vars={{ successMessage: t.contact.form.success, errorMessage: t.contact.form.error, submittingText: t.contact.form.submitting, submitText: t.contact.form.submit }}>
+<script define:vars={{ lang, successMessage: t.contact.form.success, errorMessage: t.contact.form.error, submittingText: t.contact.form.submitting, submitText: t.contact.form.submit }}>
   const form = document.getElementById('contact-form');
   const submitBtn = document.getElementById('submit-btn');
   const btnText = document.getElementById('btn-text');
@@ -216,17 +216,26 @@ const t = getTranslations(lang);
     btnSpinner.classList.remove('hidden');
     formStatus.classList.add('hidden');
     
-    // Simulate form submission (replace with actual API call)
     try {
       // Get form data
       const formData = new FormData(form);
       const data = Object.fromEntries(formData);
       
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Add language to the data
+      data.lang = lang;
       
-      // For now, just log the data (replace with actual submission)
-      console.log('Form submitted:', data);
+      // Send to Netlify Function
+      const response = await fetch('/.netlify/functions/send-contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
       
       // Show success message
       formStatus.classList.remove('hidden', 'bg-red-500/10', 'text-red-400');
@@ -237,6 +246,7 @@ const t = getTranslations(lang);
       form.reset();
       
     } catch (error) {
+      console.error('Error sending form:', error);
       // Show error message
       formStatus.classList.remove('hidden', 'bg-accent-emerald/10', 'text-accent-emerald');
       formStatus.classList.add('bg-red-500/10', 'text-red-400');

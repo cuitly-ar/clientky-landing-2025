@@ -12,6 +12,10 @@ Landing page corporativa de Clientky, consultora de Data & AI. Construida con As
 ## 📁 Estructura del Proyecto
 
 ```
+├── netlify/
+│   └── functions/        # Netlify Functions (serverless)
+│       ├── send-contact.js      # Envío de formulario de contacto
+│       └── send-application.js  # Envío de aplicaciones a empleos
 ├── public/               # Archivos estáticos (logos, favicon)
 ├── src/
 │   ├── components/       # Componentes Astro reutilizables
@@ -89,38 +93,69 @@ netlify deploy --prod
 
 ### Configuración de Dominio
 
-Si tienes un dominio personalizado (ej: `clientky.com`):
+Si tienes un dominio personalizado (ej: `clientky.app`):
 
 1. Ve a **Site settings** → **Domain management**
 2. Click en **Add custom domain**
 3. Sigue las instrucciones para configurar DNS
 
-## 🔧 Variables de Entorno
+## 🔧 Variables de Entorno (REQUERIDO)
 
-Actualmente el proyecto no requiere variables de entorno. Si necesitas agregar alguna:
+El proyecto utiliza Netlify Functions para enviar emails. Debes configurar las siguientes variables de entorno:
 
-1. Crea un archivo `.env` localmente (ya está en `.gitignore`)
-2. En Netlify: **Site settings** → **Environment variables**
+### Variables Requeridas
 
-Ejemplo de `.env`:
-```
-PUBLIC_API_URL=https://api.example.com
+| Variable | Descripción |
+|----------|-------------|
+| `SMTP_HOST` | Servidor SMTP (`mail.clientky.app`) |
+| `SMTP_PORT` | Puerto SMTP (`465` para SSL) |
+| `SMTP_USER_RECRUITING` | Email de recruiting (`recruiting@clientky.app`) |
+| `SMTP_PASS_RECRUITING` | Contraseña del email de recruiting |
+| `SMTP_USER_SALES` | Email de ventas EN (`sales@clientky.app`) |
+| `SMTP_PASS_SALES` | Contraseña del email de sales |
+| `SMTP_USER_COMERCIAL` | Email de ventas ES (`comercial@clientky.app`) |
+| `SMTP_PASS_COMERCIAL` | Contraseña del email comercial |
+
+### Configuración Local
+
+1. Crea un archivo `.env` en la raíz del proyecto (está en `.gitignore`)
+2. Copia el contenido del archivo `.env.example` (ver abajo)
+3. Reemplaza los valores con las credenciales reales
+
+### Configuración en Netlify
+
+1. Ve a **Site settings** → **Environment variables**
+2. Agrega cada variable con su valor correspondiente
+3. Las variables se aplicarán automáticamente en el próximo deploy
+
+### Ejemplo de `.env`
+
+```env
+# SMTP Configuration
+SMTP_HOST=mail.clientky.app
+SMTP_PORT=465
+
+# Recruiting (job applications)
+SMTP_USER_RECRUITING=recruiting@clientky.app
+SMTP_PASS_RECRUITING=TuContraseñaAquí
+
+# Sales (English contact form)
+SMTP_USER_SALES=sales@clientky.app
+SMTP_PASS_SALES=TuContraseñaAquí
+
+# Commercial (Spanish contact form)
+SMTP_USER_COMERCIAL=comercial@clientky.app
+SMTP_PASS_COMERCIAL=TuContraseñaAquí
 ```
 
 ## 📝 Notas para Desarrollo
 
 ### Formularios
 
-Los formularios de contacto y aplicación a empleos actualmente solo tienen lógica de frontend. Para activar el envío real:
+Los formularios de contacto y aplicación a empleos envían datos a Netlify Functions que procesan y envían emails:
 
-**Opción A - Netlify Forms:**
-Agrega `data-netlify="true"` al formulario:
-```html
-<form data-netlify="true" name="contact">
-```
-
-**Opción B - API externa:**
-Modifica el script del formulario para enviar a tu backend/API.
+- **Formulario de Contacto**: Envía a `sales@clientky.app` (EN) o `comercial@clientky.app` (ES)
+- **Aplicaciones a Empleos**: Envía a `recruiting@clientky.app` con CV y foto adjuntos
 
 ### Imágenes y Assets
 
@@ -131,4 +166,5 @@ Modifica el script del formulario para enviar a tu backend/API.
 ## 📄 Licencia
 
 Proyecto privado de Clientky. Todos los derechos reservados.
+
 

@@ -103,9 +103,17 @@ const labels = {
 
 const t = labels[lang];
 const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
+
+const successMessage = lang === 'en' 
+  ? 'Your application has been submitted successfully! We will contact you soon.'
+  : '¡Tu aplicación ha sido enviada exitosamente! Te contactaremos pronto.';
+const errorMessage = lang === 'en'
+  ? 'There was an error submitting your application. Please try again.'
+  : 'Hubo un error al enviar tu aplicación. Por favor, intenta nuevamente.';
+const submittingText = lang === 'en' ? 'Submitting...' : 'Enviando...';
 ---
 
-<div class="max-w-5xl mx-auto">
+<div class="max-w-5xl mx-auto" data-lang={lang} data-position-id={position.id} data-position-title={position.title}>
   <!-- Back Link -->
   <a href={careersUrl} class="inline-flex items-center gap-2 text-text-muted hover:text-accent-purple transition-colors mb-8">
     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -227,7 +235,7 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
       <div class="p-6 md:p-8 rounded-2xl bg-dark-50 border border-dark-200">
         <h2 class="font-display text-xl font-semibold text-text-primary mb-6">{t.applyNow}</h2>
 
-        <form class="space-y-6">
+        <form id="application-form" class="space-y-6">
           <!-- LinkedIn -->
           <div>
             <label class="block text-sm font-medium text-text-primary mb-2">
@@ -239,6 +247,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
               </span>
               <input 
                 type="text" 
+                id="linkedin"
+                name="linkedin"
                 required 
                 placeholder="username"
                 class="flex-1 px-4 py-3 rounded-r-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
@@ -253,6 +263,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
             </label>
             <input 
               type="email" 
+              id="email"
+              name="email"
               required 
               placeholder="juan.perez@mail.com"
               class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
@@ -266,6 +278,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
             </label>
             <input 
               type="text" 
+              id="fullName"
+              name="fullName"
               required 
               placeholder="Juan Gómez"
               class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
@@ -280,6 +294,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
               </label>
               <input 
                 type="file" 
+                id="profilePhoto"
+                name="profilePhoto"
                 accept="image/*" 
                 required
                 class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-muted file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:bg-accent-purple/10 file:text-accent-purple file:text-sm hover:file:bg-accent-purple/20 transition-colors"
@@ -291,6 +307,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
               </label>
               <input 
                 type="text" 
+                id="location"
+                name="location"
                 required 
                 placeholder="Buenos Aires, Argentina"
                 class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
@@ -305,6 +323,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
             </label>
             <input 
               type="tel" 
+              id="phone"
+              name="phone"
               placeholder="+54 11 1234-5678"
               class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
             />
@@ -318,6 +338,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
               </label>
               <input 
                 type="text" 
+                id="mainSkills"
+                name="mainSkills"
                 required 
                 placeholder="SQL, Python, Power BI, Looker"
                 class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
@@ -330,6 +352,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
               </label>
               <input 
                 type="text" 
+                id="secondarySkills"
+                name="secondarySkills"
                 required 
                 placeholder="Jira, Github, Basecamp"
                 class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
@@ -346,6 +370,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
               </label>
               <input 
                 type="number" 
+                id="salaryExpectation"
+                name="salaryExpectation"
                 required 
                 placeholder="3000"
                 class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
@@ -357,6 +383,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
               </label>
               <input 
                 type="file" 
+                id="cv"
+                name="cv"
                 accept=".pdf,.doc,.docx" 
                 required
                 class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-muted file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:bg-accent-purple/10 file:text-accent-purple file:text-sm hover:file:bg-accent-purple/20 transition-colors"
@@ -371,6 +399,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
                 {t.seniority} <span class="text-accent-purple">*</span>
               </label>
               <select 
+                id="seniority"
+                name="seniority"
                 required
                 class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary focus:outline-none focus:border-accent-purple transition-colors"
               >
@@ -385,6 +415,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
                 {t.englishLevel} <span class="text-accent-purple">*</span>
               </label>
               <select 
+                id="englishLevel"
+                name="englishLevel"
                 required
                 class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary focus:outline-none focus:border-accent-purple transition-colors"
               >
@@ -402,6 +434,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
               {t.experience} <span class="text-accent-purple">*</span>
             </label>
             <textarea 
+              id="experience"
+              name="experience"
               required 
               rows="3"
               placeholder={lang === 'en' ? 'Describe your relevant work experience...' : 'Describe tu experiencia laboral relevante...'}
@@ -415,6 +449,8 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
               {t.education} <span class="text-accent-purple">*</span>
             </label>
             <textarea 
+              id="education"
+              name="education"
               required 
               rows="2"
               placeholder={lang === 'en' ? 'University, degree, certifications...' : 'Universidad, título, certificaciones...'}
@@ -424,7 +460,7 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
 
           <!-- Custom Questions -->
           {position.questions.length > 0 && (
-            <div class="pt-6 border-t border-dark-200">
+            <div class="pt-6 border-t border-dark-200" id="questions-section" data-questions={JSON.stringify(position.questions)}>
               <h3 class="font-display text-lg font-semibold text-text-primary mb-4">{t.questions}</h3>
               <div class="space-y-4">
                 {position.questions.map((question, index) => (
@@ -435,7 +471,9 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
                     <textarea 
                       required 
                       rows="2"
-                      class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors resize-none"
+                      name={`question_${index}`}
+                      data-question={question}
+                      class="question-answer w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors resize-none"
                     ></textarea>
                   </div>
                 ))}
@@ -443,13 +481,21 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
             </div>
           )}
 
+          <!-- Status Message -->
+          <div id="form-status" class="hidden p-4 rounded-xl text-center"></div>
+
           <!-- Submit -->
           <div class="pt-6">
             <button 
               type="submit"
-              class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-accent-purple to-accent-cyan text-white font-semibold hover:opacity-90 transition-opacity"
+              id="submit-btn"
+              class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-accent-purple to-accent-cyan text-white font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              {t.submit}
+              <span id="btn-text">{t.submit}</span>
+              <svg id="btn-spinner" class="hidden w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
             </button>
             <p class="text-xs text-text-muted text-center mt-3">{t.saving}</p>
           </div>
@@ -458,4 +504,135 @@ const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
     </div>
   </div>
 </div>
+
+<script define:vars={{ successMessage, errorMessage, submittingText, submitText: t.submit }}>
+  const form = document.getElementById('application-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const btnText = document.getElementById('btn-text');
+  const btnSpinner = document.getElementById('btn-spinner');
+  const formStatus = document.getElementById('form-status');
+  const container = document.querySelector('[data-lang]');
+  
+  // Helper function to convert file to base64
+  async function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        // Remove the data:...;base64, prefix
+        const base64 = reader.result.split(',')[1];
+        resolve(base64);
+      };
+      reader.onerror = error => reject(error);
+    });
+  }
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    btnText.textContent = submittingText;
+    btnSpinner.classList.remove('hidden');
+    formStatus.classList.add('hidden');
+    
+    try {
+      const lang = container?.dataset.lang || 'en';
+      const positionId = container?.dataset.positionId || '';
+      const positionTitle = container?.dataset.positionTitle || '';
+      
+      // Get form data
+      const formData = new FormData(form);
+      
+      // Get file data
+      const cvFile = formData.get('cv');
+      const photoFile = formData.get('profilePhoto');
+      
+      let cvFileData = null;
+      let cvFileName = null;
+      let photoFileData = null;
+      let photoFileName = null;
+      
+      if (cvFile && cvFile.size > 0) {
+        cvFileData = await fileToBase64(cvFile);
+        cvFileName = cvFile.name;
+      }
+      
+      if (photoFile && photoFile.size > 0) {
+        photoFileData = await fileToBase64(photoFile);
+        photoFileName = photoFile.name;
+      }
+      
+      // Collect question answers
+      const questionAnswers = [];
+      const questionTextareas = document.querySelectorAll('.question-answer');
+      questionTextareas.forEach((textarea) => {
+        questionAnswers.push({
+          question: textarea.dataset.question,
+          answer: textarea.value
+        });
+      });
+      
+      // Build payload
+      const payload = {
+        lang,
+        positionId,
+        positionTitle,
+        linkedin: formData.get('linkedin'),
+        email: formData.get('email'),
+        fullName: formData.get('fullName'),
+        location: formData.get('location'),
+        phone: formData.get('phone') || '',
+        mainSkills: formData.get('mainSkills'),
+        secondarySkills: formData.get('secondarySkills'),
+        salaryExpectation: formData.get('salaryExpectation'),
+        seniority: formData.get('seniority'),
+        englishLevel: formData.get('englishLevel'),
+        experience: formData.get('experience'),
+        education: formData.get('education'),
+        questions: questionAnswers,
+        cvFileName,
+        cvFileData,
+        photoFileName,
+        photoFileData
+      };
+      
+      // Send to Netlify Function
+      const response = await fetch('/.netlify/functions/send-application', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to submit application');
+      }
+      
+      // Show success message
+      formStatus.classList.remove('hidden', 'bg-red-500/10', 'text-red-400');
+      formStatus.classList.add('bg-accent-emerald/10', 'text-accent-emerald');
+      formStatus.textContent = successMessage;
+      
+      // Reset form
+      form.reset();
+      
+      // Scroll to status
+      formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+    } catch (error) {
+      console.error('Error submitting application:', error);
+      // Show error message
+      formStatus.classList.remove('hidden', 'bg-accent-emerald/10', 'text-accent-emerald');
+      formStatus.classList.add('bg-red-500/10', 'text-red-400');
+      formStatus.textContent = errorMessage;
+    } finally {
+      // Reset button
+      submitBtn.disabled = false;
+      btnText.textContent = submitText;
+      btnSpinner.classList.add('hidden');
+    }
+  });
+</script>
 
