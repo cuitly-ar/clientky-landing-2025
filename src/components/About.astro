@@ -1,0 +1,129 @@
+---
+import { getTranslations, type Language } from '../i18n/translations';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<section id="about" class="relative py-24 md:py-32 overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-dark-50">
+    <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-accent-purple/10 rounded-full blur-[150px]"></div>
+  </div>
+  
+  <div class="relative z-10 max-w-6xl mx-auto px-6">
+    <!-- Section Tag -->
+    <div class="flex items-center gap-3 mb-6 animate-on-scroll animate-fade-in-up">
+      <div class="w-12 h-[2px] bg-gradient-to-r from-accent-cyan to-transparent"></div>
+      <span class="text-accent-cyan font-mono text-sm uppercase tracking-wider">{t.about.tag}</span>
+    </div>
+    
+    <!-- Section Title -->
+    <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-text-primary mb-12 animate-on-scroll animate-fade-in-up">
+      {t.about.title}
+    </h2>
+    
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Text Content -->
+      <div class="space-y-6">
+        <p class="text-lg text-text-secondary leading-relaxed animate-on-scroll animate-fade-in-up">
+          {t.about.paragraph1}
+        </p>
+        
+        <p class="text-lg text-text-secondary leading-relaxed animate-on-scroll animate-fade-in-up">
+          {t.about.paragraph2}
+        </p>
+        
+        <!-- Highlight Box -->
+        <div class="relative p-6 rounded-2xl bg-dark-100 border border-dark-300 animate-on-scroll animate-fade-in-up">
+          <div class="absolute -top-3 left-6">
+            <span class="px-3 py-1 rounded-full bg-accent-purple/20 text-accent-purple text-xs font-semibold uppercase tracking-wider">
+              {lang === 'en' ? 'Our Philosophy' : 'Nuestra Filosofía'}
+            </span>
+          </div>
+          
+          <p class="text-xl font-display font-semibold text-text-primary mb-3 mt-2">
+            {t.about.highlight}
+          </p>
+          
+          <p class="text-text-secondary">
+            {t.about.paragraph3}
+          </p>
+        </div>
+      </div>
+      
+      <!-- Visual Element -->
+      <div class="relative animate-on-scroll animate-scale-in mb-24 md:mb-20">
+        <!-- Main Card -->
+        <div class="relative p-8 rounded-3xl bg-gradient-to-br from-dark-100 to-dark-200 border border-dark-300 overflow-hidden">
+          <!-- Decorative Elements -->
+          <div class="absolute top-0 right-0 w-32 h-32 bg-accent-cyan/10 rounded-full blur-[60px]"></div>
+          <div class="absolute bottom-0 left-0 w-32 h-32 bg-accent-purple/10 rounded-full blur-[60px]"></div>
+          
+          <!-- Intersection Visual -->
+          <div class="relative aspect-square max-w-sm mx-auto">
+            <!-- Three Circles Representing Business, Data, Technology -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <!-- Business Circle -->
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full border-2 border-accent-cyan/40 flex items-center justify-center">
+                <div class="w-32 h-32 rounded-full bg-accent-cyan/10 flex items-center justify-center">
+                  <svg class="w-10 h-10 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                </div>
+                <span class="absolute -bottom-6 text-xs text-text-muted font-medium uppercase tracking-wider">{lang === 'en' ? 'Business' : 'Negocio'}</span>
+              </div>
+              
+              <!-- Data Circle -->
+              <div class="absolute bottom-0 left-4 w-40 h-40 rounded-full border-2 border-accent-purple/40 flex items-center justify-center">
+                <div class="w-32 h-32 rounded-full bg-accent-purple/10 flex items-center justify-center">
+                  <svg class="w-10 h-10 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                  </svg>
+                </div>
+                <span class="absolute -bottom-6 text-xs text-text-muted font-medium uppercase tracking-wider">{lang === 'en' ? 'Data' : 'Datos'}</span>
+              </div>
+              
+              <!-- Technology Circle -->
+              <div class="absolute bottom-0 right-4 w-40 h-40 rounded-full border-2 border-accent-emerald/40 flex items-center justify-center">
+                <div class="w-32 h-32 rounded-full bg-accent-emerald/10 flex items-center justify-center">
+                  <svg class="w-10 h-10 text-accent-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <span class="absolute -bottom-6 text-xs text-text-muted font-medium uppercase tracking-wider">{lang === 'en' ? 'Technology' : 'Tecnología'}</span>
+              </div>
+              
+              <!-- Center Intersection -->
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-accent-cyan via-accent-purple to-accent-emerald flex items-center justify-center animate-pulse-glow z-10">
+                <span class="text-white font-display font-bold text-sm text-center leading-tight">
+                  {lang === 'en' ? 'Impact' : 'Impacto'}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Floating Badge - Positioned well below the circles -->
+        <div class="absolute -bottom-20 left-1/2 -translate-x-1/2 md:-bottom-16 md:left-auto md:translate-x-0 md:right-4 px-4 py-3 rounded-xl bg-dark-100 border border-dark-300 shadow-xl flex items-center gap-3 z-20">
+          <div class="w-10 h-10 rounded-lg bg-accent-emerald/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-accent-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-text-primary">{lang === 'en' ? 'Real Results' : 'Resultados Reales'}</div>
+            <div class="text-xs text-text-muted">{lang === 'en' ? 'Measurable Impact' : 'Impacto Medible'}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

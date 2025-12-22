@@ -1,16 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#7C3AED;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#10B981;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <rect width="100" height="100" fill="url(#grad)" rx="20"/>
-  <text x="50" y="70" font-family="Arial, sans-serif" font-size="60" font-weight="bold" fill="white" text-anchor="middle">C</text>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Clientky U-shaped isotipo simplified for favicon -->
+  <!-- Left bar -->
+  <path d="M6 4C6 2.9 6.9 2 8 2H11C12.1 2 13 2.9 13 4V14H6V4Z" fill="#B794F4"/>
+  <!-- Right bar -->
+  <path d="M19 4C19 2.9 19.9 2 21 2H24C25.1 2 26 2.9 26 4V14H19V4Z" fill="#B794F4"/>
+  <!-- Outer U curve -->
+  <path d="M6 12V20C6 25.5 10.5 30 16 30C21.5 30 26 25.5 26 20V12H19V20C19 21.65 17.65 23 16 23C14.35 23 13 21.65 13 20V12H6Z" fill="#B794F4"/>
 </svg>
-
-
-
-
-
-

@@ -1,0 +1,59 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import JobApplication from '../../../components/JobApplication.astro';
+const lang = 'es';
+
+const position = {
+  id: 'junior-growth-marketer',
+  title: 'Junior, Growth Marketer (Paid Media)',
+  department: 'Operaciones',
+  location: 'Argentina',
+  type: 'Tiempo completo',
+  mode: 'Remoto',
+  experience: '1 - 2.5 años',
+  description: 'Como Junior Growth Marketer, apoyarás la ejecución de campañas de medios pagos en múltiples plataformas. Trabajarás de cerca con miembros senior del equipo para optimizar campañas, analizar datos de rendimiento y contribuir a las estrategias de crecimiento de los clientes.',
+  responsibilities: [
+    'Apoyar la creación y gestión de campañas de publicidad paga en Google Ads, Meta Ads y otras plataformas.',
+    'Monitorear el rendimiento de las campañas y compilar reportes regulares.',
+    'Asistir en estrategias de A/B testing y optimización.',
+    'Colaborar con el equipo creativo para desarrollar copy y visuales de anuncios.',
+    'Investigar tendencias de la industria y estrategias de competidores.',
+    'Ayudar a mantener la comunicación con clientes y documentación de campañas.',
+    'Apoyar la gestión de presupuesto y ritmo de las campañas.',
+    'Contribuir a experimentos de crecimiento y exploración de nuevos canales.',
+  ],
+  requirements: [
+    'Al menos 1 año de experiencia en marketing digital o medios pagos.',
+    'Entendimiento básico de Google Ads, Meta Ads Manager o plataformas similares.',
+    'Mentalidad analítica con atención al detalle.',
+    'Habilidades básicas de Excel/Google Sheets para análisis de datos.',
+    'Buenas habilidades de comunicación en inglés y español.',
+    'Ganas de aprender y crecer en marketing de rendimiento.',
+    'Capacidad de trabajar de forma independiente en un entorno remoto.',
+  ],
+  niceToHave: [
+    'Certificaciones de Google Ads o Meta Blueprint',
+    'Experiencia con herramientas de analytics como Google Analytics',
+    'Entendimiento básico de modelos de atribución',
+    'Conocimiento de optimización de landing pages',
+  ],
+  requiredSkills: ['Google Ads', 'Meta Ads', 'Analytics', 'Excel', 'Marketing Digital'],
+  questions: [
+    '¿Con qué plataformas de medios pagos has trabajado?',
+    'Describe una campaña que ayudaste a optimizar y qué resultados lograste.',
+    '¿Cómo te mantienes actualizado con las tendencias de marketing digital?',
+    '¿Qué métricas consideras más importantes para medir el éxito de una campaña?',
+  ]
+};
+---
+
+<Layout title={`${position.title} - Carreras`} lang={lang}>
+  <Header lang={lang} />
+  <main class="pt-24 pb-16 px-6">
+    <JobApplication lang={lang} position={position} />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+

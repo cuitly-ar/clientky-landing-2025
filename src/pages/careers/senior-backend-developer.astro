@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import JobApplication from '../../components/JobApplication.astro';
+const lang = 'en';
+
+const position = {
+  id: 'senior-backend-developer',
+  title: 'Senior, BackEnd Developer',
+  department: 'Operations',
+  location: 'Argentina',
+  type: 'Full-time',
+  mode: 'Remote',
+  experience: '4.5+ years',
+  description: 'As a Senior Backend Developer, you will design and build robust backend systems for data-intensive applications. You will work on challenging projects involving data processing, API development, and integration with various data sources and AI services.',
+  responsibilities: [
+    'Design and develop scalable backend services and APIs.',
+    'Build and maintain data processing pipelines.',
+    'Implement integrations with third-party services and data sources.',
+    'Write clean, maintainable, and well-tested code.',
+    'Collaborate with frontend developers and data engineers.',
+    'Participate in system design and architecture discussions.',
+    'Optimize application performance and reliability.',
+    'Contribute to technical documentation.',
+    'Mentor junior developers and conduct code reviews.',
+    'Stay current with backend development best practices.',
+  ],
+  requirements: [
+    'At least 4.5 years of backend development experience.',
+    'Strong proficiency in Python (FastAPI, Django, or Flask).',
+    'Experience with relational databases (PostgreSQL) and query optimization.',
+    'Knowledge of REST API design principles.',
+    'Experience with cloud services (AWS, GCP, or Azure).',
+    'Understanding of containerization (Docker).',
+    'Experience with version control (Git) and CI/CD pipelines.',
+    'Good understanding of software design patterns.',
+    'Advanced English proficiency.',
+  ],
+  niceToHave: [
+    'Experience with message queues (RabbitMQ, Kafka)',
+    'Knowledge of NoSQL databases',
+    'Experience with data processing frameworks (Apache Spark)',
+    'Familiarity with ML model deployment',
+  ],
+  requiredSkills: ['Python', 'PostgreSQL', 'FastAPI', 'Docker', 'AWS/GCP', 'REST APIs', 'Git'],
+  questions: [
+    'What backend frameworks and technologies do you have the most experience with?',
+    'Describe a challenging performance optimization problem you solved.',
+    'How do you approach API design and documentation?',
+    'What is your experience with data processing at scale?',
+  ]
+};
+---
+
+<Layout title={`${position.title} - Careers`} lang={lang}>
+  <Header lang={lang} />
+  <main class="pt-24 pb-16 px-6">
+    <JobApplication lang={lang} position={position} />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+

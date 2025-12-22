@@ -1,0 +1,61 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import JobApplication from '../../../components/JobApplication.astro';
+const lang = 'es';
+
+const position = {
+  id: 'technical-project-manager',
+  title: 'Semi Senior, Technical Project Manager (Data & AI)',
+  department: 'Operaciones',
+  location: 'Argentina',
+  type: 'Tiempo completo',
+  mode: 'Remoto',
+  experience: '2 - 3.5 años',
+  description: 'Como Project Manager, serás responsable de ejecutar y gestionar la producción de varios proyectos tecnológicos desde su Kick-off hasta su implementación. Nuestros proyectos consisten principalmente en desarrollo de softwares ad hoc (backend y frontend, utilizando tecnologías como PHP, Python y React) y/o la provisión de servicios de consultoría en proyectos de datos (generación de data, warehouses, procesos ETL, visualización y business intelligence).',
+  responsibilities: [
+    'Establecer contacto con nuestros clientes para comprender y definir claramente sus necesidades y expectativas en cuanto a los proyectos de Data y Tecnología.',
+    'Colaborar con equipos internos y externos para determinar los alcances del proyecto, recursos necesarios y expectativas de entrega.',
+    'Coordinar reuniones de inicio, definir scope, cotizar, establecer cronogramas y planificar recursos para la correcta ejecución de los diversos proyectos.',
+    'Garantizar el cumplimiento exitoso del proceso de delivery, manteniendo la satisfacción de nuestros clientes y corroborando que la rentabilidad del proyecto se respete.',
+    'Ser el punto de contacto principal entre los stakeholders internos y externos, proporcionando actualizaciones claras y regulares sobre el progreso del proyecto.',
+    'Dar instrucciones claras sobre los entregables y plazos, fomentando la colaboración y la participación del equipo.',
+    'Implementar y dirigir rituales ágiles, como sprints y reuniones de planificación.',
+    'Identificar y gestionar proactivamente riesgos y problemas, implementando medidas correctivas según sea necesario.',
+    'Mantener actualizado el estado de los proyectos a través de plataformas de gestión como Basecamp, Github y Jira.',
+    'Supervisar el trabajo del equipo técnico, asignar tareas, establecer prioridades y garantizar la calidad del trabajo.',
+  ],
+  requirements: [
+    'Al menos 2 años de experiencia gestionando proyectos y equipos tecnológicos, preferentemente en desarrollo de software, proyectos de datos y/o marketing digital.',
+    'Experiencia en la implementación y coordinación de metodologías ágiles, especialmente Scrum y/o Kanban.',
+    'Poder entender el proceso de desarrollo de software versionado, incluyendo la utilización de Github, Pull Requests, Issues, etc.',
+    'Conocimientos sólidos en tecnologías de desarrollo de software como PHP, Python y React (no se requiere programar).',
+    'Conocimientos básicos (y ganas de aprender) en generación de data warehouses, procesos ETL, visualización y business intelligence.',
+    'Dominio avanzado del idioma inglés.',
+    'Excelentes habilidades de comunicación, consultoría (gestión de clientes), coordinación de equipos, gestión del tiempo, buena organización, sentido de urgencia y proactividad.',
+  ],
+  niceToHave: [
+    'Certificación PMP / Agile o equivalente',
+    'Experiencia con Basecamp',
+    'Conocimientos de Python',
+    'Fundamentos de Machine Learning',
+  ],
+  requiredSkills: ['SQL', 'ETL', 'Power BI', 'Looker', 'Streamlit', 'Project Management'],
+  questions: [
+    '¿Tienes experiencia trabajando con herramientas de gestión y control de proyectos como Jira, Basecamp o Github?',
+    '¿Cuántos años de experiencia tienes gestionando proyectos tecnológicos, incluyendo software, datos o marketing digital?',
+    '¿Trabajaste previamente en un rol técnico antes de ser Project Manager? Si la respuesta es SI, ¿en qué rol?',
+    '¿Qué lenguajes, tecnologías o herramientas técnicas has utilizado personalmente (aunque hoy no programes)?',
+  ]
+};
+---
+
+<Layout title={`${position.title} - Carreras`} lang={lang}>
+  <Header lang={lang} />
+  <main class="pt-24 pb-16 px-6">
+    <JobApplication lang={lang} position={position} />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+

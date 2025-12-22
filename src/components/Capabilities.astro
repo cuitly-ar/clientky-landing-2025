@@ -1,0 +1,97 @@
+---
+import { getTranslations, type Language } from '../i18n/translations';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+
+const icons = [
+  // Growth Intelligence
+  `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+  </svg>`,
+  // Personalization
+  `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+  </svg>`,
+  // Product & UX
+  `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+  </svg>`,
+  // Measurement
+  `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+  </svg>`,
+];
+---
+
+<section class="relative py-24 md:py-32 overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-dark-50">
+    <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+    <div class="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-accent-emerald/10 rounded-full blur-[150px]"></div>
+  </div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-6">
+    <!-- Section Header -->
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <!-- Tag -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dark-100 border border-dark-300 mb-6 animate-on-scroll animate-fade-in-up">
+        <svg class="w-4 h-4 text-accent-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+        </svg>
+        <span class="text-accent-emerald font-mono text-sm uppercase tracking-wider">{t.capabilities.tag}</span>
+      </div>
+      
+      <!-- Title -->
+      <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-text-primary mb-6 animate-on-scroll animate-fade-in-up">
+        {t.capabilities.title}
+      </h2>
+      
+      <!-- Subtitle -->
+      <p class="text-lg text-text-secondary animate-on-scroll animate-fade-in-up">
+        {t.capabilities.subtitle}
+      </p>
+    </div>
+    
+    <!-- Capabilities Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {t.capabilities.items.map((capability, index) => (
+        <div 
+          class="group relative p-6 rounded-2xl bg-dark-100 border border-dark-300 hover:border-accent-emerald/30 transition-all duration-500 animate-on-scroll animate-fade-in-up"
+          style={`animation-delay: ${index * 100}ms;`}
+        >
+          <!-- Hover Glow -->
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent-emerald/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <!-- Icon -->
+          <div class="relative w-14 h-14 rounded-xl bg-dark-200 border border-dark-300 flex items-center justify-center mb-5 text-text-muted group-hover:text-accent-emerald group-hover:border-accent-emerald/30 transition-all duration-500">
+            <Fragment set:html={icons[index]} />
+          </div>
+          
+          <!-- Content -->
+          <div class="relative">
+            <h3 class="font-display font-semibold text-lg text-text-primary mb-2 group-hover:text-accent-emerald transition-colors duration-300">
+              {capability.title}
+            </h3>
+            <p class="text-sm text-text-muted leading-relaxed">
+              {capability.description}
+            </p>
+          </div>
+          
+          <!-- Arrow indicator -->
+          <div class="absolute bottom-6 right-6 w-8 h-8 rounded-full bg-dark-200 flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+            <svg class="w-4 h-4 text-accent-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+

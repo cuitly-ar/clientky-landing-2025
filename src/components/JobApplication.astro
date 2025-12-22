@@ -1,0 +1,461 @@
+---
+import { type Language } from '../i18n/translations';
+
+interface Props {
+  lang: Language;
+  position: {
+    id: string;
+    title: string;
+    department: string;
+    location: string;
+    type: string;
+    mode: string;
+    experience: string;
+    description: string;
+    responsibilities: string[];
+    requirements: string[];
+    niceToHave?: string[];
+    requiredSkills: string[];
+    questions: string[];
+  };
+}
+
+const { lang, position } = Astro.props;
+
+const labels = {
+  en: {
+    back: 'Back to Careers',
+    jobDescription: 'Job Description',
+    inThisRole: 'In this role you will',
+    requirements: 'Requirements',
+    niceToHave: 'Nice to have',
+    requiredSkills: 'Required Skills',
+    applyNow: 'Apply for this position',
+    uploadCV: 'Extract information from your CV with AI',
+    pdfOnly: '(PDF only, max 10MB)',
+    linkedin: 'LinkedIn Profile',
+    email: 'Email',
+    fullName: 'Full Name',
+    profilePhoto: 'Profile Photo',
+    location: 'Location',
+    phone: 'Phone (optional)',
+    mainSkills: 'Main Skills',
+    mainSkillsHelp: 'Add the candidate\'s primary skills (Max 4 skills)',
+    secondarySkills: 'Secondary Skills',
+    secondarySkillsHelp: 'Add the candidate\'s secondary skills',
+    salaryExpectation: 'Salary Expectation (Monthly USD)',
+    cv: 'CV / Resume',
+    seniority: 'Seniority Level',
+    englishLevel: 'English Level',
+    experience: 'Work Experience',
+    education: 'Education',
+    questions: 'Additional Questions',
+    submit: 'Submit Application',
+    saving: 'Your information will be saved for future applications',
+    department: 'Department',
+    type: 'Type',
+    mode: 'Mode',
+    experienceReq: 'Experience',
+    selectSeniority: 'Select seniority level',
+    selectEnglish: 'Select english level',
+    seniorityOptions: ['Junior', 'Semi Senior', 'Senior', 'Lead', 'Principal'],
+    englishOptions: ['Basic', 'Intermediate', 'Advanced', 'Native/Bilingual'],
+  },
+  es: {
+    back: 'Volver a Carreras',
+    jobDescription: 'Descripción del Puesto',
+    inThisRole: 'En este rol vas a',
+    requirements: 'Requisitos',
+    niceToHave: 'Deseable',
+    requiredSkills: 'Habilidades Requeridas',
+    applyNow: 'Aplicar a esta posición',
+    uploadCV: 'Extrae información de tu CV con IA',
+    pdfOnly: '(Solo PDF, máx 10MB)',
+    linkedin: 'Perfil de LinkedIn',
+    email: 'Email',
+    fullName: 'Nombre Completo',
+    profilePhoto: 'Foto de Perfil',
+    location: 'Ubicación',
+    phone: 'Teléfono (opcional)',
+    mainSkills: 'Habilidades Principales',
+    mainSkillsHelp: 'Agrega las habilidades principales del candidato (Máx 4)',
+    secondarySkills: 'Habilidades Secundarias',
+    secondarySkillsHelp: 'Agrega las habilidades secundarias del candidato',
+    salaryExpectation: 'Expectativa Salarial (Mensual USD)',
+    cv: 'CV / Currículum',
+    seniority: 'Nivel de Seniority',
+    englishLevel: 'Nivel de Inglés',
+    experience: 'Experiencia Laboral',
+    education: 'Educación',
+    questions: 'Preguntas Adicionales',
+    submit: 'Enviar Aplicación',
+    saving: 'Tu información se guardará para futuras aplicaciones',
+    department: 'Departamento',
+    type: 'Tipo',
+    mode: 'Modalidad',
+    experienceReq: 'Experiencia',
+    selectSeniority: 'Selecciona nivel de seniority',
+    selectEnglish: 'Selecciona nivel de inglés',
+    seniorityOptions: ['Junior', 'Semi Senior', 'Senior', 'Lead', 'Principal'],
+    englishOptions: ['Básico', 'Intermedio', 'Avanzado', 'Nativo/Bilingüe'],
+  }
+};
+
+const t = labels[lang];
+const careersUrl = lang === 'en' ? '/careers' : '/es/carreras';
+---
+
+<div class="max-w-5xl mx-auto">
+  <!-- Back Link -->
+  <a href={careersUrl} class="inline-flex items-center gap-2 text-text-muted hover:text-accent-purple transition-colors mb-8">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    {t.back}
+  </a>
+
+  <div class="grid lg:grid-cols-5 gap-8">
+    <!-- Job Details -->
+    <div class="lg:col-span-2">
+      <div class="sticky top-28">
+        <!-- Header -->
+        <div class="mb-6">
+          <img src="/logos/logo-sinfondo.png" alt="Clientky" class="h-12 w-auto mb-4" />
+          <h1 class="font-display text-2xl font-bold text-text-primary mb-4">{position.title}</h1>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full bg-accent-purple/10 text-accent-purple text-sm font-medium">
+              {position.type}
+            </span>
+            <span class="px-3 py-1 rounded-full bg-accent-cyan/10 text-accent-cyan text-sm font-medium">
+              {position.mode} - {position.location}
+            </span>
+            <span class="px-3 py-1 rounded-full bg-dark-200 text-text-muted text-sm">
+              {position.experience}
+            </span>
+          </div>
+        </div>
+
+        <!-- Job Info -->
+        <div class="space-y-4 p-5 rounded-xl bg-dark-50 border border-dark-200 mb-6">
+          <div class="flex justify-between text-sm">
+            <span class="text-text-muted">{t.department}</span>
+            <span class="text-text-primary">{position.department}</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-text-muted">{t.type}</span>
+            <span class="text-text-primary">{position.type}</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-text-muted">{t.mode}</span>
+            <span class="text-text-primary">{position.mode}</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-text-muted">{t.experienceReq}</span>
+            <span class="text-text-primary">{position.experience}</span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-6">
+          <h2 class="font-display text-lg font-semibold text-text-primary mb-3">{t.jobDescription}</h2>
+          <p class="text-text-muted text-sm leading-relaxed">{position.description}</p>
+        </div>
+
+        <!-- Responsibilities -->
+        <div class="mb-6">
+          <h2 class="font-display text-lg font-semibold text-text-primary mb-3">{t.inThisRole}</h2>
+          <ul class="space-y-2">
+            {position.responsibilities.map((item) => (
+              <li class="flex items-start gap-2 text-sm text-text-muted">
+                <svg class="w-4 h-4 text-accent-emerald mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Requirements -->
+        <div class="mb-6">
+          <h2 class="font-display text-lg font-semibold text-text-primary mb-3">{t.requirements}</h2>
+          <ul class="space-y-2">
+            {position.requirements.map((item) => (
+              <li class="flex items-start gap-2 text-sm text-text-muted">
+                <svg class="w-4 h-4 text-accent-purple mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Nice to Have -->
+        {position.niceToHave && position.niceToHave.length > 0 && (
+          <div class="mb-6">
+            <h2 class="font-display text-lg font-semibold text-text-primary mb-3">{t.niceToHave}</h2>
+            <ul class="space-y-2">
+              {position.niceToHave.map((item) => (
+                <li class="flex items-start gap-2 text-sm text-text-muted">
+                  <svg class="w-4 h-4 text-accent-cyan mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Required Skills -->
+        <div>
+          <h2 class="font-display text-lg font-semibold text-text-primary mb-3">{t.requiredSkills}</h2>
+          <div class="flex flex-wrap gap-2">
+            {position.requiredSkills.map((skill) => (
+              <span class="px-3 py-1 rounded-full bg-dark-200 text-text-muted text-xs">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Application Form -->
+    <div class="lg:col-span-3">
+      <div class="p-6 md:p-8 rounded-2xl bg-dark-50 border border-dark-200">
+        <h2 class="font-display text-xl font-semibold text-text-primary mb-6">{t.applyNow}</h2>
+
+        <form class="space-y-6">
+          <!-- LinkedIn -->
+          <div>
+            <label class="block text-sm font-medium text-text-primary mb-2">
+              {t.linkedin} <span class="text-accent-purple">*</span>
+            </label>
+            <div class="flex">
+              <span class="inline-flex items-center px-4 rounded-l-lg border border-r-0 border-dark-200 bg-dark text-text-muted text-sm">
+                linkedin.com/in/
+              </span>
+              <input 
+                type="text" 
+                required 
+                placeholder="username"
+                class="flex-1 px-4 py-3 rounded-r-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
+              />
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label class="block text-sm font-medium text-text-primary mb-2">
+              {t.email} <span class="text-accent-purple">*</span>
+            </label>
+            <input 
+              type="email" 
+              required 
+              placeholder="juan.perez@mail.com"
+              class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
+            />
+          </div>
+
+          <!-- Full Name -->
+          <div>
+            <label class="block text-sm font-medium text-text-primary mb-2">
+              {t.fullName} <span class="text-accent-purple">*</span>
+            </label>
+            <input 
+              type="text" 
+              required 
+              placeholder="Juan Gómez"
+              class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
+            />
+          </div>
+
+          <!-- Profile Photo & Location Grid -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-text-primary mb-2">
+                {t.profilePhoto} <span class="text-accent-purple">*</span>
+              </label>
+              <input 
+                type="file" 
+                accept="image/*" 
+                required
+                class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-muted file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:bg-accent-purple/10 file:text-accent-purple file:text-sm hover:file:bg-accent-purple/20 transition-colors"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-text-primary mb-2">
+                {t.location} <span class="text-accent-purple">*</span>
+              </label>
+              <input 
+                type="text" 
+                required 
+                placeholder="Buenos Aires, Argentina"
+                class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
+              />
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label class="block text-sm font-medium text-text-primary mb-2">
+              {t.phone}
+            </label>
+            <input 
+              type="tel" 
+              placeholder="+54 11 1234-5678"
+              class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
+            />
+          </div>
+
+          <!-- Skills -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-text-primary mb-2">
+                {t.mainSkills} <span class="text-accent-purple">*</span>
+              </label>
+              <input 
+                type="text" 
+                required 
+                placeholder="SQL, Python, Power BI, Looker"
+                class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
+              />
+              <p class="text-xs text-text-muted mt-1">{t.mainSkillsHelp}</p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-text-primary mb-2">
+                {t.secondarySkills} <span class="text-accent-purple">*</span>
+              </label>
+              <input 
+                type="text" 
+                required 
+                placeholder="Jira, Github, Basecamp"
+                class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
+              />
+              <p class="text-xs text-text-muted mt-1">{t.secondarySkillsHelp}</p>
+            </div>
+          </div>
+
+          <!-- Salary & CV -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-text-primary mb-2">
+                {t.salaryExpectation} <span class="text-accent-purple">*</span>
+              </label>
+              <input 
+                type="number" 
+                required 
+                placeholder="3000"
+                class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-text-primary mb-2">
+                {t.cv} <span class="text-accent-purple">*</span>
+              </label>
+              <input 
+                type="file" 
+                accept=".pdf,.doc,.docx" 
+                required
+                class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-muted file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:bg-accent-purple/10 file:text-accent-purple file:text-sm hover:file:bg-accent-purple/20 transition-colors"
+              />
+            </div>
+          </div>
+
+          <!-- Seniority & English Level -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-text-primary mb-2">
+                {t.seniority} <span class="text-accent-purple">*</span>
+              </label>
+              <select 
+                required
+                class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary focus:outline-none focus:border-accent-purple transition-colors"
+              >
+                <option value="" class="text-text-muted">{t.selectSeniority}</option>
+                {t.seniorityOptions.map((option) => (
+                  <option value={option}>{option}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-text-primary mb-2">
+                {t.englishLevel} <span class="text-accent-purple">*</span>
+              </label>
+              <select 
+                required
+                class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary focus:outline-none focus:border-accent-purple transition-colors"
+              >
+                <option value="" class="text-text-muted">{t.selectEnglish}</option>
+                {t.englishOptions.map((option) => (
+                  <option value={option}>{option}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <!-- Experience -->
+          <div>
+            <label class="block text-sm font-medium text-text-primary mb-2">
+              {t.experience} <span class="text-accent-purple">*</span>
+            </label>
+            <textarea 
+              required 
+              rows="3"
+              placeholder={lang === 'en' ? 'Describe your relevant work experience...' : 'Describe tu experiencia laboral relevante...'}
+              class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Education -->
+          <div>
+            <label class="block text-sm font-medium text-text-primary mb-2">
+              {t.education} <span class="text-accent-purple">*</span>
+            </label>
+            <textarea 
+              required 
+              rows="2"
+              placeholder={lang === 'en' ? 'University, degree, certifications...' : 'Universidad, título, certificaciones...'}
+              class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Custom Questions -->
+          {position.questions.length > 0 && (
+            <div class="pt-6 border-t border-dark-200">
+              <h3 class="font-display text-lg font-semibold text-text-primary mb-4">{t.questions}</h3>
+              <div class="space-y-4">
+                {position.questions.map((question, index) => (
+                  <div>
+                    <label class="block text-sm font-medium text-text-primary mb-2">
+                      {question} <span class="text-accent-purple">*</span>
+                    </label>
+                    <textarea 
+                      required 
+                      rows="2"
+                      class="w-full px-4 py-3 rounded-lg bg-dark border border-dark-200 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-purple transition-colors resize-none"
+                    ></textarea>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Submit -->
+          <div class="pt-6">
+            <button 
+              type="submit"
+              class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-accent-purple to-accent-cyan text-white font-semibold hover:opacity-90 transition-opacity"
+            >
+              {t.submit}
+            </button>
+            <p class="text-xs text-text-muted text-center mt-3">{t.saving}</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,142 +1,134 @@
 # Clientky Landing Page
 
-Landing page moderna y responsive construida con Astro y Tailwind CSS para Clientky, la plataforma de crecimiento en Instagram y TikTok impulsada por IA.
+Landing page corporativa de Clientky, consultora de Data & AI. Construida con Astro y Tailwind CSS.
 
-## 🚀 Características
+## 🚀 Tech Stack
 
-- ⚡ **Astro** - Framework moderno y ultra-rápido
-- 🎨 **Tailwind CSS** - Diseño responsive y moderno
-- 📱 **Mobile-First** - Optimizado para todos los dispositivos
-- ♿ **Accesible** - Buenas prácticas de accesibilidad (ARIA)
-- 🔍 **SEO Optimizado** - Meta tags y estructura semántica
-- 🎯 **Performance** - Optimizado para Lighthouse
+- **[Astro](https://astro.build/)** v4 - Framework de sitios estáticos
+- **[Tailwind CSS](https://tailwindcss.com/)** v3 - Framework de utilidades CSS
+- **TypeScript** - Tipado estático
+- **Netlify** - Hosting y despliegue
 
-## 📦 Estructura del Proyecto
+## 📁 Estructura del Proyecto
 
 ```
-/
-├── public/
-│   └── favicon.svg
+├── public/               # Archivos estáticos (logos, favicon)
 ├── src/
-│   ├── components/
-│   │   ├── Header.astro
-│   │   ├── Hero.astro
-│   │   ├── Features.astro
-│   │   ├── Pricing.astro
-│   │   ├── Testimonials.astro
-│   │   ├── CTA.astro
-│   │   └── Footer.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-├── astro.config.mjs
-├── tailwind.config.cjs
-├── postcss.config.cjs
-└── package.json
+│   ├── components/       # Componentes Astro reutilizables
+│   ├── i18n/             # Traducciones y utilidades de internacionalización
+│   ├── layouts/          # Layouts de página (Layout, LegalLayout)
+│   └── pages/            # Páginas (rutas automáticas)
+│       ├── es/           # Páginas en español
+│       ├── careers/      # Páginas de carreras (EN)
+│       └── *.astro       # Páginas en inglés (raíz)
+├── astro.config.mjs      # Configuración de Astro
+├── netlify.toml          # Configuración de Netlify
+├── tailwind.config.cjs   # Configuración de Tailwind CSS
+└── tsconfig.json         # Configuración de TypeScript
 ```
 
-## 🛠️ Comandos
+## 🛠️ Desarrollo Local
 
-Todos los comandos se ejecutan desde la raíz del proyecto en la terminal:
+### Requisitos Previos
 
-| Comando                   | Acción                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Instala las dependencias                          |
-| `npm run dev`             | Inicia el servidor de desarrollo en `localhost:4321` |
-| `npm run build`           | Construye el sitio para producción en `./dist/`   |
-| `npm run preview`         | Previsualiza la construcción localmente           |
+- Node.js 18+ 
+- npm o pnpm
 
-## 🚀 Inicio Rápido
-
-1. **Instalar dependencias:**
-   ```bash
-   npm install
-   ```
-
-2. **Iniciar servidor de desarrollo:**
-   ```bash
-   npm run dev
-   ```
-
-3. **Abrir en el navegador:**
-   - Español: `http://localhost:4321/?lang=es`
-   - English: `http://localhost:4321/?lang=en`
-
-## 🎯 Flujo de Usuario
-
-### Landing Page
-1. Usuario visita la página principal
-2. Puede cambiar idioma (ES/EN) en cualquier momento
-3. Navega por secciones: Inicio, Instagram, TikTok, Precios, Recursos
-4. Click en "Comenzar" en cualquier CTA
-
-### Onboarding (3 Pasos)
-1. **Paso 1**: Selección de plan (Basic, Pro, Experts)
-   - Si viene de la landing con plan seleccionado, salta este paso
-2. **Paso 2**: Configuración de usuario
-   - Seleccionar plataforma (Instagram/TikTok)
-   - Ingresar username
-   - Ingresar email
-3. **Paso 3**: Pago simulado
-   - Ver resumen del plan
-   - Completar datos de pago
-   - Confirmación de éxito
-
-## 🎨 Personalización
-
-### Colores
-
-Los colores principales se configuran en `tailwind.config.cjs`:
-
-- **Primary:** `#7C3AED` (Púrpura)
-- **Secondary:** `#10B981` (Verde)
-- **Accent:** `#F59E0B` (Ámbar)
-
-### Fuentes
-
-La fuente principal es **Poppins** de Google Fonts, cargada en el Layout principal.
-
-## 📱 Responsive
-
-El diseño está optimizado para:
-- 📱 Mobile: < 640px
-- 📱 Tablet: 640px - 1024px
-- 💻 Desktop: > 1024px
-
-Usando breakpoints de Tailwind: `sm`, `md`, `lg`, `xl`
-
-## ♿ Accesibilidad
-
-- Etiquetas ARIA apropiadas
-- Navegación por teclado
-- Contraste de colores WCAG AA
-- Textos alternativos en imágenes
-- Estructura semántica HTML5
-
-## 📊 Performance
-
-- Lazy loading de imágenes
-- Optimización de fuentes
-- CSS optimizado
-- JavaScript mínimo
-- Código estático pre-renderizado
-
-## 🌐 Deploy
-
-El proyecto está listo para desplegarse en:
-- Vercel
-- Netlify
-- GitHub Pages
-- Cualquier hosting de archivos estáticos
+### Instalación
 
 ```bash
-npm run build
+# Clonar el repositorio
+git clone <tu-repo-url>
+cd Landing-Clientky-2026
+
+# Instalar dependencias
+npm install
 ```
 
-El contenido estático se generará en la carpeta `./dist/`.
+### Comandos
+
+| Comando           | Descripción                                     |
+|-------------------|-------------------------------------------------|
+| `npm run dev`     | Inicia servidor de desarrollo en `localhost:4321` |
+| `npm run build`   | Genera el sitio estático en `./dist`            |
+| `npm run preview` | Vista previa del build de producción            |
+
+## 🌐 Internacionalización (i18n)
+
+El sitio soporta dos idiomas:
+- **Inglés (EN)** - Ruta raíz (`/`, `/careers`, `/privacy`, etc.)
+- **Español (ES)** - Prefijo `/es/` (`/es/`, `/es/carreras`, `/es/privacidad`, etc.)
+
+Las traducciones están en `src/i18n/translations.ts`.
+
+## 🚀 Despliegue en Netlify
+
+### Opción 1: Desde GitHub (Recomendado)
+
+1. Sube el repositorio a GitHub
+2. En Netlify, selecciona "Add new site" → "Import an existing project"
+3. Conecta tu repositorio de GitHub
+4. Netlify detectará automáticamente la configuración de `netlify.toml`
+5. Click en "Deploy site"
+
+### Opción 2: Netlify CLI
+
+```bash
+# Instalar Netlify CLI
+npm install -g netlify-cli
+
+# Login en Netlify
+netlify login
+
+# Inicializar proyecto (solo la primera vez)
+netlify init
+
+# Desplegar a producción
+netlify deploy --prod
+```
+
+### Configuración de Dominio
+
+Si tienes un dominio personalizado (ej: `clientky.com`):
+
+1. Ve a **Site settings** → **Domain management**
+2. Click en **Add custom domain**
+3. Sigue las instrucciones para configurar DNS
+
+## 🔧 Variables de Entorno
+
+Actualmente el proyecto no requiere variables de entorno. Si necesitas agregar alguna:
+
+1. Crea un archivo `.env` localmente (ya está en `.gitignore`)
+2. En Netlify: **Site settings** → **Environment variables**
+
+Ejemplo de `.env`:
+```
+PUBLIC_API_URL=https://api.example.com
+```
+
+## 📝 Notas para Desarrollo
+
+### Formularios
+
+Los formularios de contacto y aplicación a empleos actualmente solo tienen lógica de frontend. Para activar el envío real:
+
+**Opción A - Netlify Forms:**
+Agrega `data-netlify="true"` al formulario:
+```html
+<form data-netlify="true" name="contact">
+```
+
+**Opción B - API externa:**
+Modifica el script del formulario para enviar a tu backend/API.
+
+### Imágenes y Assets
+
+- Los logos de partners y clientes están en `public/logos/`
+- El favicon está en `public/favicon.svg`
+- Todas las imágenes son servidas como archivos estáticos
 
 ## 📄 Licencia
 
-© 2023 Clientky. Todos los derechos reservados.
+Proyecto privado de Clientky. Todos los derechos reservados.
 

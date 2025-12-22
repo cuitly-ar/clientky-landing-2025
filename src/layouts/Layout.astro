@@ -1,49 +1,218 @@
 ---
-import type { Language } from '../i18n/translations';
+import { getTranslations, type Language } from '../i18n/translations';
+import { getAlternateLanguage, getLocalizedPath } from '../i18n/utils';
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
   lang?: Language;
 }
 
-const {
-  title,
-  description = "Crecimiento Inteligente en Instagram y TikTok con IA",
-  lang = 'es'
+const { 
+  title = 'Clientky | Data & AI Consultancy',
+  description = 'We transform data into business decisions with real impact. Strategy, data platforms, and applied AI.',
+  lang = 'en'
 } = Astro.props;
+
+const t = getTranslations(lang);
+const alternateLang = getAlternateLanguage(lang);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const alternateURL = new URL(getLocalizedPath('', alternateLang), Astro.site);
 ---
 
-<!doctype html>
-<html lang={lang}>
+<!DOCTYPE html>
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     
-    <!-- SEO Meta Tags -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Canonical & Alternate Language -->
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang={alternateLang} href={alternateURL} />
+    <link rel="alternate" hreflang={lang} href={canonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
+    
+    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_ES'} />
+    
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     
     <title>{title}</title>
+    
+    <style is:global>
+      /* Base styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      html {
+        font-family: 'DM Sans', system-ui, sans-serif;
+        background: #0a0a0f;
+        color: #f8fafc;
+      }
+      
+      body {
+        min-height: 100vh;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #16161d;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #2d2d3a;
+        border-radius: 4px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #3d3d4a;
+      }
+      
+      /* Selection */
+      ::selection {
+        background: rgba(0, 212, 255, 0.3);
+        color: #fff;
+      }
+      
+      /* Focus styles */
+      :focus-visible {
+        outline: 2px solid #00d4ff;
+        outline-offset: 2px;
+      }
+      
+      /* Animation delays for staggered animations */
+      .delay-100 { animation-delay: 100ms; }
+      .delay-200 { animation-delay: 200ms; }
+      .delay-300 { animation-delay: 300ms; }
+      .delay-400 { animation-delay: 400ms; }
+      .delay-500 { animation-delay: 500ms; }
+      .delay-600 { animation-delay: 600ms; }
+      .delay-700 { animation-delay: 700ms; }
+      .delay-800 { animation-delay: 800ms; }
+      
+      /* Gradient text utility */
+      .gradient-text {
+        background: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 50%, #10b981 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      /* Glass effect */
+      .glass {
+        background: rgba(22, 22, 29, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      
+      /* Glow effects */
+      .glow-cyan {
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+      }
+      
+      .glow-purple {
+        box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+      }
+      
+      /* Scroll-triggered animations */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      
+      .animate-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* Slide variants for scroll animations */
+      .animate-on-scroll.animate-slide-in-left {
+        transform: translateX(-50px);
+      }
+      
+      .animate-on-scroll.animate-slide-in-right {
+        transform: translateX(50px);
+      }
+      
+      .animate-on-scroll.animate-scale-in {
+        transform: scale(0.95);
+      }
+      
+      .animate-on-scroll.is-visible.animate-slide-in-left,
+      .animate-on-scroll.is-visible.animate-slide-in-right,
+      .animate-on-scroll.is-visible.animate-scale-in {
+        transform: translateX(0) scale(1);
+      }
+    </style>
   </head>
-  <body class="font-sans antialiased" data-lang={lang}>
+  <body class="bg-dark text-text-primary">
     <slot />
+    
+    <script>
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, observerOptions);
+      
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+      });
+      
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            const target = document.querySelector(targetId);
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          }
+        });
+      });
+    </script>
   </body>
 </html>
-
-
-

@@ -1,0 +1,299 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+const lang = 'es';
+
+const positions = [
+  {
+    id: 'technical-project-manager',
+    title: 'Semi Senior, Technical Project Manager (Data & AI)',
+    department: 'Operaciones',
+    location: 'Argentina',
+    type: 'Tiempo completo',
+    mode: 'Remoto',
+    experience: '2 - 3.5 años'
+  },
+  {
+    id: 'junior-growth-marketer',
+    title: 'Junior, Growth Marketer (Paid Media)',
+    department: 'Operaciones',
+    location: 'Argentina',
+    type: 'Tiempo completo',
+    mode: 'Remoto',
+    experience: '1 - 2.5 años'
+  },
+  {
+    id: 'growth-marketing-specialist',
+    title: 'Semi Senior, Growth Marketing Specialist (Paid Media)',
+    department: 'Operaciones',
+    location: 'Argentina',
+    type: 'Tiempo completo',
+    mode: 'Remoto',
+    experience: '2 - 3.5 años'
+  },
+  {
+    id: 'sales-executive',
+    title: 'Sales Executive (Creative & Media)',
+    department: 'Ventas',
+    location: 'Argentina',
+    type: 'Tiempo completo',
+    mode: 'Remoto',
+    experience: '+ 4.5 años'
+  },
+  {
+    id: 'technical-lead',
+    title: 'Technical Lead (Engineering/Architect)',
+    department: 'Operaciones',
+    location: 'Argentina',
+    type: 'Tiempo completo',
+    mode: 'Remoto',
+    experience: '+ 4.5 años'
+  },
+  {
+    id: 'senior-backend-developer',
+    title: 'Senior, BackEnd Developer',
+    department: 'Operaciones',
+    location: 'Argentina',
+    type: 'Tiempo completo',
+    mode: 'Remoto',
+    experience: '+ 4.5 años'
+  }
+];
+
+const values = [
+  { title: 'Visionario & Estratégico', desc: 'Transformamos datos en visión de negocio. Pensamos en grande y definimos el camino.' },
+  { title: 'Ágil & Efectivo', desc: 'Innovamos con rapidez y entregamos resultados precisos y tangibles.' },
+  { title: 'Transparente & Colaborativo', desc: 'Fomentamos una colaboración sin fronteras, donde cada voz importa y cada perspectiva suma.' },
+  { title: 'Audaz & Resolutivo', desc: 'Enfrentamos desafíos complejos con valentía y ejecutamos soluciones con determinación.' }
+];
+---
+
+<Layout title="Carreras - Únete a Nuestro Equipo" lang={lang}>
+  <Header lang={lang} />
+  
+  <main class="pt-24">
+    <!-- Hero Section -->
+    <section class="relative py-20 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-accent-purple/5 via-transparent to-transparent"></div>
+      <div class="max-w-6xl mx-auto px-6 relative">
+        <div class="text-center max-w-4xl mx-auto">
+          <span class="inline-block px-4 py-2 rounded-full bg-accent-purple/10 border border-accent-purple/20 text-accent-purple text-sm font-medium mb-6">
+            Únete a Nuestro Equipo
+          </span>
+          <h1 class="font-display text-4xl md:text-6xl font-bold text-text-primary mb-6 leading-tight">
+            Impulsa el Futuro con <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-purple to-accent-cyan">Datos e IA</span>
+          </h1>
+          <p class="text-xl text-text-muted max-w-3xl mx-auto leading-relaxed">
+            En Clientky, no solo desarrollamos soluciones tecnológicas; construimos el futuro de los negocios mediante datos e inteligencia artificial. Únete a un equipo impulsado por valores sólidos de innovación, colaboración y responsabilidad.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="font-display text-3xl font-bold text-text-primary mb-6">Sobre Clientky</h2>
+            <p class="text-text-muted mb-4">
+              Clientky ofrece más que un empleo: ofrecemos un entorno de propósito donde transformamos datos en decisiones y estrategias en resultados. Como proveedor líder de soluciones integrales de datos e IA, no solo ayudamos a empresas a liberar el valor de su información; creamos oportunidades profesionales significativas.
+            </p>
+            <p class="text-text-muted">
+              En Clientky, experimentarás una cultura arraigada en la innovación continua, la inclusión genuina y la responsabilidad social. Descubre cómo puedes contribuir a un equipo que valora el progreso tangible, ofrece autonomía con trabajo remoto flexible y reconoce cada aporte individual y colectivo.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            {values.map((value) => (
+              <div class="p-5 rounded-xl bg-dark-50 border border-dark-200">
+                <h3 class="font-semibold text-text-primary mb-2 text-sm">{value.title}</h3>
+                <p class="text-xs text-text-muted">{value.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEI Section -->
+    <section class="py-16 bg-dark-50/50">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <h2 class="font-display text-3xl font-bold text-text-primary mb-4">Diversidad, Equidad e Inclusión</h2>
+          <p class="text-text-muted">
+            Clientky está comprometida con fomentar una cultura de apoyo e inclusión en toda nuestra organización. Creemos que es fundamental promover la diversidad y eliminar cualquier forma de discriminación en el lugar de trabajo.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-4 gap-6">
+          <div class="p-6 rounded-xl bg-dark border border-dark-200 text-center">
+            <div class="w-12 h-12 rounded-full bg-accent-purple/10 flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-text-primary mb-2">Igualdad de Oportunidades</h3>
+            <p class="text-xs text-text-muted">Para todos los empleados y candidatos</p>
+          </div>
+          <div class="p-6 rounded-xl bg-dark border border-dark-200 text-center">
+            <div class="w-12 h-12 rounded-full bg-accent-cyan/10 flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-text-primary mb-2">Ambiente Seguro</h3>
+            <p class="text-xs text-text-muted">Cero tolerancia al acoso</p>
+          </div>
+          <div class="p-6 rounded-xl bg-dark border border-dark-200 text-center">
+            <div class="w-12 h-12 rounded-full bg-accent-emerald/10 flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-accent-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-text-primary mb-2">Crecimiento por Mérito</h3>
+            <p class="text-xs text-text-muted">Oportunidades de formación y desarrollo</p>
+          </div>
+          <div class="p-6 rounded-xl bg-dark border border-dark-200 text-center">
+            <div class="w-12 h-12 rounded-full bg-accent-purple/10 flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-text-primary mb-2">Equipo Global</h3>
+            <p class="text-xs text-text-muted">Cultura remote-first</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Offer -->
+    <section class="py-16">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="font-display text-3xl font-bold text-text-primary text-center mb-12">Qué Ofrecemos</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-accent-purple/10 to-transparent border border-accent-purple/20">
+            <div class="w-14 h-14 rounded-xl bg-accent-purple/20 flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-text-primary mb-3">Remote-First</h3>
+            <p class="text-text-muted">Trabaja desde la ubicación que mejor se adapte a tu vida. Somos un equipo global distribuido.</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-accent-cyan/10 to-transparent border border-accent-cyan/20">
+            <div class="w-14 h-14 rounded-xl bg-accent-cyan/20 flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-text-primary mb-3">Compensación Competitiva</h3>
+            <p class="text-text-muted">Beneficios atractivos y oportunidades de crecimiento ilimitadas basadas en el desempeño individual y corporativo.</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-accent-emerald/10 to-transparent border border-accent-emerald/20">
+            <div class="w-14 h-14 rounded-xl bg-accent-emerald/20 flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-accent-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-text-primary mb-3">Colaboración Global</h3>
+            <p class="text-text-muted">Conecta, colabora y aprende de colegas en diferentes partes del mundo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Open Positions -->
+    <section class="py-16 bg-dark-50/50">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="font-display text-3xl font-bold text-text-primary mb-4">Encuentra Tu Próxima Oportunidad</h2>
+          <p class="text-text-muted">Descubre nuestras posiciones destacadas y aplica en un solo clic.</p>
+        </div>
+        
+        <div class="space-y-4">
+          {positions.map((position) => (
+            <a 
+              href={`/es/carreras/${position.id}`}
+              class="group block p-6 rounded-xl bg-dark border border-dark-200 hover:border-accent-purple/30 transition-all"
+            >
+              <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <h3 class="font-display text-lg font-semibold text-text-primary group-hover:text-accent-purple transition-colors mb-2">
+                    {position.title}
+                  </h3>
+                  <div class="flex flex-wrap gap-3 text-sm">
+                    <span class="text-text-muted">{position.department}</span>
+                    <span class="text-dark-300">•</span>
+                    <span class="text-text-muted">{position.location}</span>
+                    <span class="text-dark-300">•</span>
+                    <span class="text-text-muted">{position.mode}</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full bg-accent-purple/10 text-accent-purple text-xs font-medium">
+                      {position.type}
+                    </span>
+                    <span class="px-3 py-1 rounded-full bg-accent-cyan/10 text-accent-cyan text-xs font-medium">
+                      {position.experience}
+                    </span>
+                  </div>
+                  <svg class="w-5 h-5 text-text-muted group-hover:text-accent-purple group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Security Notice -->
+    <section class="py-16">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 to-transparent border border-amber-500/20">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-semibold text-text-primary mb-3">Atención Importante</h3>
+              <p class="text-text-muted text-sm mb-4">
+                Clientky está al tanto de estafas que involucran publicaciones fraudulentas de empleo en portales de terceros y/o individuos no afiliados a Clientky que se hacen pasar por miembros de nuestro equipo de reclutamiento.
+              </p>
+              <ul class="space-y-2 text-sm text-text-muted">
+                <li class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-accent-emerald mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Nuestros únicos sitios oficiales son nuestro portal de carreras en LinkedIn y nuestro sitio web corporativo.
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-accent-emerald mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Los correos legítimos de la compañía siempre terminarán con nuestro dominio oficial @clientky.com.
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-accent-emerald mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Una empresa legítima nunca pedirá dinero a cambio de una oportunidad laboral.
+                </li>
+              </ul>
+              <p class="text-xs text-text-muted mt-4">
+                Reporta actividades sospechosas a: <a href="mailto:legal@clientky.com" class="text-accent-purple hover:underline">legal@clientky.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer lang={lang} />
+</Layout>
+

@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import JobApplication from '../../components/JobApplication.astro';
+const lang = 'en';
+
+const position = {
+  id: 'sales-executive',
+  title: 'Sales Executive (Creative & Media)',
+  department: 'Sales',
+  location: 'Argentina',
+  type: 'Full-time',
+  mode: 'Remote',
+  experience: '4.5+ years',
+  description: 'As a Sales Executive, you will be responsible for driving revenue growth by identifying, developing, and closing new business opportunities in the creative and media space. You will work with clients to understand their needs and position our data and AI solutions to help them achieve their goals.',
+  responsibilities: [
+    'Identify and develop new business opportunities in target markets.',
+    'Build and maintain relationships with key decision-makers and stakeholders.',
+    'Understand client needs and present tailored solutions that address their challenges.',
+    'Lead the full sales cycle from prospecting to closing deals.',
+    'Collaborate with delivery teams to ensure smooth project handoffs.',
+    'Meet and exceed sales targets and KPIs.',
+    'Maintain accurate pipeline and forecasting in CRM systems.',
+    'Represent Clientky at industry events and networking opportunities.',
+    'Contribute to sales strategy and market expansion initiatives.',
+  ],
+  requirements: [
+    'At least 4.5 years of B2B sales experience, preferably in technology, data, or media services.',
+    'Proven track record of meeting or exceeding sales targets.',
+    'Strong understanding of consultative selling methodologies.',
+    'Excellent presentation and negotiation skills.',
+    'Experience with CRM systems (HubSpot, Salesforce, etc.).',
+    'Advanced English proficiency for international clients.',
+    'Self-motivated with ability to work independently.',
+    'Strong network in the technology or media industry.',
+  ],
+  niceToHave: [
+    'Experience selling data or AI solutions',
+    'Background in digital marketing or media agencies',
+    'Knowledge of the LATAM market',
+    'Experience with enterprise sales cycles',
+  ],
+  requiredSkills: ['B2B Sales', 'Consultative Selling', 'CRM', 'Negotiation', 'Business Development'],
+  questions: [
+    'What is the largest deal you have closed and what was your approach?',
+    'How do you typically build relationships with new prospects?',
+    'Describe your experience selling technology or data services.',
+    'How do you handle objections during the sales process?',
+  ]
+};
+---
+
+<Layout title={`${position.title} - Careers`} lang={lang}>
+  <Header lang={lang} />
+  <main class="pt-24 pb-16 px-6">
+    <JobApplication lang={lang} position={position} />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+

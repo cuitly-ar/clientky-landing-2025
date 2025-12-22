@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Services from '../../components/Services.astro';
+import Capabilities from '../../components/Capabilities.astro';
+import Approach from '../../components/Approach.astro';
+import Partners from '../../components/Partners.astro';
+import Clients from '../../components/Clients.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'es';
+---
+
+<Layout 
+  title="Clientky | Consultoría de Datos e IA - Transformamos Datos en Decisiones de Negocio"
+  description="Ayudamos a organizaciones a crecer, optimizar y escalar mediante estrategia, plataformas de datos e inteligencia artificial aplicada. De la intuición a decisiones basadas en datos."
+  lang={lang}
+>
+  <Header lang={lang} />
+  <main>
+    <Hero lang={lang} />
+    <Partners lang={lang} />
+    <About lang={lang} />
+    <Services lang={lang} />
+    <Capabilities lang={lang} />
+    <Approach lang={lang} />
+    <Clients lang={lang} />
+    <ContactForm lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

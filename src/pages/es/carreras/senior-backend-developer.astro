@@ -1,0 +1,63 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import JobApplication from '../../../components/JobApplication.astro';
+const lang = 'es';
+
+const position = {
+  id: 'senior-backend-developer',
+  title: 'Senior, BackEnd Developer',
+  department: 'Operaciones',
+  location: 'Argentina',
+  type: 'Tiempo completo',
+  mode: 'Remoto',
+  experience: '+ 4.5 años',
+  description: 'Como Senior Backend Developer, diseñarás y construirás sistemas backend robustos para aplicaciones intensivas en datos. Trabajarás en proyectos desafiantes que involucran procesamiento de datos, desarrollo de APIs e integración con diversas fuentes de datos y servicios de IA.',
+  responsibilities: [
+    'Diseñar y desarrollar servicios backend y APIs escalables.',
+    'Construir y mantener pipelines de procesamiento de datos.',
+    'Implementar integraciones con servicios de terceros y fuentes de datos.',
+    'Escribir código limpio, mantenible y bien testeado.',
+    'Colaborar con desarrolladores frontend e ingenieros de datos.',
+    'Participar en discusiones de diseño de sistemas y arquitectura.',
+    'Optimizar el rendimiento y confiabilidad de las aplicaciones.',
+    'Contribuir a la documentación técnica.',
+    'Mentorear a desarrolladores junior y realizar code reviews.',
+    'Mantenerse actualizado con las mejores prácticas de desarrollo backend.',
+  ],
+  requirements: [
+    'Al menos 4.5 años de experiencia en desarrollo backend.',
+    'Fuerte dominio de Python (FastAPI, Django o Flask).',
+    'Experiencia con bases de datos relacionales (PostgreSQL) y optimización de queries.',
+    'Conocimiento de principios de diseño de REST APIs.',
+    'Experiencia con servicios cloud (AWS, GCP o Azure).',
+    'Entendimiento de containerización (Docker).',
+    'Experiencia con control de versiones (Git) y pipelines CI/CD.',
+    'Buen entendimiento de patrones de diseño de software.',
+    'Dominio avanzado del inglés.',
+  ],
+  niceToHave: [
+    'Experiencia con colas de mensajes (RabbitMQ, Kafka)',
+    'Conocimiento de bases de datos NoSQL',
+    'Experiencia con frameworks de procesamiento de datos (Apache Spark)',
+    'Familiaridad con deployment de modelos ML',
+  ],
+  requiredSkills: ['Python', 'PostgreSQL', 'FastAPI', 'Docker', 'AWS/GCP', 'REST APIs', 'Git'],
+  questions: [
+    '¿Con qué frameworks y tecnologías backend tienes más experiencia?',
+    'Describe un problema desafiante de optimización de rendimiento que hayas resuelto.',
+    '¿Cómo abordas el diseño y documentación de APIs?',
+    '¿Cuál es tu experiencia con procesamiento de datos a escala?',
+  ]
+};
+---
+
+<Layout title={`${position.title} - Carreras`} lang={lang}>
+  <Header lang={lang} />
+  <main class="pt-24 pb-16 px-6">
+    <JobApplication lang={lang} position={position} />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+

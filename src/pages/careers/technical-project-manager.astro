@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import JobApplication from '../../components/JobApplication.astro';
+const lang = 'en';
+
+const position = {
+  id: 'technical-project-manager',
+  title: 'Semi Senior, Technical Project Manager (Data & AI)',
+  department: 'Operations',
+  location: 'Argentina',
+  type: 'Full-time',
+  mode: 'Remote',
+  experience: '2 - 3.5 years',
+  description: 'As a Project Manager, you will be responsible for executing and managing the production of various technology projects from Kick-off to implementation. Our projects mainly consist of ad hoc software development (backend and frontend, using technologies such as PHP, Python, and React) and/or the provision of consulting services in data projects (data generation, warehouses, ETL processes, visualization, and business intelligence).',
+  responsibilities: [
+    'Establish contact with our clients to understand and clearly define their needs and expectations regarding Data and Technology projects.',
+    'Collaborate with internal and external teams to determine project scopes, necessary resources, and delivery expectations.',
+    'Coordinate kick-off meetings, define scope, quote, establish schedules, and plan resources for proper project execution.',
+    'Ensure successful compliance of the delivery process, maintaining client satisfaction and ensuring project profitability.',
+    'Be the main point of contact between internal and external stakeholders, providing clear and regular updates on project progress.',
+    'Give clear instructions on deliverables and deadlines, fostering collaboration and team participation.',
+    'Implement and lead agile rituals, such as sprints and planning meetings.',
+    'Proactively identify and manage risks and issues, implementing corrective measures as needed.',
+    'Keep project status updated through management platforms such as Basecamp, Github, and Jira.',
+    'Supervise the technical team\'s work, assign tasks, set priorities, and ensure work quality.',
+  ],
+  requirements: [
+    'At least 2 years of experience managing technology projects and teams, preferably in software development, data projects, and/or digital marketing.',
+    'Experience in implementing and coordinating agile methodologies, especially Scrum and/or Kanban.',
+    'Understanding of the versioned software development process, including use of Github, Pull Requests, Issues, etc.',
+    'Solid knowledge of software development technologies such as PHP, Python, and React (programming not required).',
+    'Basic knowledge (and willingness to learn) in data warehouse generation, ETL processes, visualization, and business intelligence.',
+    'Advanced English proficiency.',
+    'Excellent communication, consulting (client management), team coordination, time management, good organization, sense of urgency, and proactivity skills.',
+  ],
+  niceToHave: [
+    'PMP / Agile certification or equivalent',
+    'Experience with Basecamp',
+    'Python knowledge',
+    'Machine Learning fundamentals',
+  ],
+  requiredSkills: ['SQL', 'ETL', 'Power BI', 'Looker', 'Streamlit', 'Project Management'],
+  questions: [
+    'Do you have experience working with project management and control tools like Jira, Basecamp, or Github?',
+    'How many years of experience do you have managing technology projects, including software, data, or digital marketing?',
+    'Did you previously work in a technical role before becoming a Project Manager? If YES, in what role?',
+    'What languages, technologies, or technical tools have you personally used (even if you don\'t program today)?',
+  ]
+};
+---
+
+<Layout title={`${position.title} - Careers`} lang={lang}>
+  <Header lang={lang} />
+  <main class="pt-24 pb-16 px-6">
+    <JobApplication lang={lang} position={position} />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+

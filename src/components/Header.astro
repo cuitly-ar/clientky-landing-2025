@@ -1,146 +1,150 @@
 ---
-import LanguageSelector from './LanguageSelector.astro';
-import { getLanguage, t } from '../i18n/utils';
+import { getTranslations, type Language } from '../i18n/translations';
+import { getAlternateLanguage, getLocalizedPath, getLanguageName } from '../i18n/utils';
 
-const lang = getLanguage(Astro.url);
-const homeHref = lang === 'en' ? '/en/' : '/';
-const loginEnabled = import.meta.env.DEV;
-const loginHref = loginEnabled ? (lang === 'en' ? '/en/login' : '/login') : '#';
-const pricingHref = '#precios';
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+const alternateLang = getAlternateLanguage(lang);
+const alternatePath = getLocalizedPath('', alternateLang);
 ---
 
-<header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
-  <div class="container mx-auto px-6 lg:px-20">
-    <div class="flex justify-between items-center py-5">
+<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <nav class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
       <!-- Logo -->
-      <a href={homeHref} class="flex items-center gap-3 text-2xl font-bold text-primary hover:opacity-80 transition-opacity duration-300">
-        <span class="logo-isotype" aria-hidden="true"></span>
-        <span>Clientky<span class="text-gray-900">.</span></span>
+      <a href={lang === 'en' ? '/' : '/es'} class="flex items-center gap-3 group">
+        <img 
+          src="/logos/logo-sinfondo.png" 
+          alt="Clientky" 
+          class="h-8 w-auto transition-transform group-hover:scale-105"
+        />
+        <span class="font-display font-semibold text-xl text-text-primary">Clientky</span>
       </a>
       
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-8" aria-label="Main navigation">
-        <a href="#inicio" class="text-gray-900 font-medium hover:text-primary transition-colors duration-300 relative group">
-          {t(lang, 'home')}
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="text-text-secondary hover:text-text-primary transition-colors text-sm font-medium">
+          {t.nav.about}
         </a>
-        <a href="#instagram" class="text-gray-900 font-medium hover:text-primary transition-colors duration-300 relative group">
-          {t(lang, 'instagram')}
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        <a href="#services" class="text-text-secondary hover:text-text-primary transition-colors text-sm font-medium">
+          {t.nav.services}
         </a>
-        <a href="#tiktok" class="text-gray-900 font-medium hover:text-primary transition-colors duration-300 relative group">
-          {t(lang, 'tiktok')}
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+        <a href="#approach" class="text-text-secondary hover:text-text-primary transition-colors text-sm font-medium">
+          {t.nav.approach}
         </a>
-        <a href="#precios" class="text-gray-900 font-medium hover:text-primary transition-colors duration-300 relative group">
-          {t(lang, 'pricing')}
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a>
-        <a href="#recursos" class="text-gray-900 font-medium hover:text-primary transition-colors duration-300 relative group">
-          {t(lang, 'resources')}
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-        </a>
-      </nav>
-      
-      <!-- Auth Buttons -->
-      <div class="hidden md:flex items-center space-x-4">
-        <LanguageSelector />
-        <a
-          href={loginHref}
-          aria-disabled={!loginEnabled}
-          class={`text-gray-900 font-medium ${
-            loginEnabled ? 'hover:text-primary transition-colors duration-300' : 'opacity-50 cursor-default pointer-events-none'
-          }`}
+        
+        <!-- Language Switcher -->
+        <a 
+          href={alternatePath}
+          class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-dark-100 hover:bg-dark-200 transition-colors text-sm"
         >
-          {t(lang, 'login')}
+          <span class="text-xs">{alternateLang === 'en' ? '🇺🇸' : '🇪🇸'}</span>
+          <span class="text-text-secondary">{getLanguageName(alternateLang)}</span>
         </a>
-        <a href={pricingHref} class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out inline-block">
-          {t(lang, 'getStarted')}
+        
+        <!-- CTA Button -->
+        <a 
+          href="#contact" 
+          class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-purple text-white font-medium text-sm transition-all hover:shadow-lg hover:shadow-accent-cyan/25 hover:scale-105"
+        >
+          {t.nav.contact}
         </a>
       </div>
       
       <!-- Mobile Menu Button -->
       <button 
-        id="mobile-menu-btn" 
-        class="md:hidden text-gray-900 text-2xl focus:outline-none" 
-        aria-label="Toggle mobile menu"
-        aria-expanded="false"
+        id="mobile-menu-btn"
+        class="md:hidden p-2 rounded-lg hover:bg-dark-100 transition-colors"
+        aria-label="Toggle menu"
       >
-        ☰
+        <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
       </button>
     </div>
-  </div>
-  
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-    <nav class="container mx-auto px-6 py-4 flex flex-col space-y-4">
-      <a href="#inicio" class="text-gray-900 font-medium hover:text-primary transition-colors duration-300">{t(lang, 'home')}</a>
-      <a href="#instagram" class="text-gray-900 font-medium hover:text-primary transition-colors duration-300">{t(lang, 'instagram')}</a>
-      <a href="#tiktok" class="text-gray-900 font-medium hover:text-primary transition-colors duration-300">{t(lang, 'tiktok')}</a>
-      <a href="#precios" class="text-gray-900 font-medium hover:text-primary transition-colors duration-300">{t(lang, 'pricing')}</a>
-      <a href="#recursos" class="text-gray-900 font-medium hover:text-primary transition-colors duration-300">{t(lang, 'resources')}</a>
-      <hr class="border-gray-200" />
-      <div class="py-2">
-        <LanguageSelector />
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+      <div class="flex flex-col gap-4 pt-4 border-t border-dark-200">
+        <a href="#about" class="text-text-secondary hover:text-text-primary transition-colors py-2">
+          {t.nav.about}
+        </a>
+        <a href="#services" class="text-text-secondary hover:text-text-primary transition-colors py-2">
+          {t.nav.services}
+        </a>
+        <a href="#approach" class="text-text-secondary hover:text-text-primary transition-colors py-2">
+          {t.nav.approach}
+        </a>
+        
+        <div class="flex items-center justify-between pt-4 border-t border-dark-200">
+          <a 
+            href={alternatePath}
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-dark-100 text-sm"
+          >
+            <span class="text-xs">{alternateLang === 'en' ? '🇺🇸' : '🇪🇸'}</span>
+            <span class="text-text-secondary">{getLanguageName(alternateLang)}</span>
+          </a>
+          
+          <a 
+            href="#contact" 
+            class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-purple text-white font-medium text-sm"
+          >
+            {t.nav.contact}
+          </a>
+        </div>
       </div>
-      <a
-        href={loginHref}
-        aria-disabled={!loginEnabled}
-        class={`text-gray-900 font-medium text-left ${
-          loginEnabled ? 'hover:text-primary transition-colors duration-300' : 'opacity-50 cursor-default pointer-events-none'
-        }`}
-      >
-        {t(lang, 'login')}
-      </a>
-      <a href={pricingHref} class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-xl font-semibold shadow-lg text-center">
-        {t(lang, 'getStarted')}
-      </a>
-    </nav>
-  </div>
+    </div>
+  </nav>
 </header>
 
 <script>
+  // Header scroll behavior
+  const header = document.getElementById('header');
+  let lastScrollY = window.scrollY;
+  
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    
+    if (currentScrollY > 50) {
+      header?.classList.add('glass', 'shadow-lg', 'shadow-black/10');
+    } else {
+      header?.classList.remove('glass', 'shadow-lg', 'shadow-black/10');
+    }
+    
+    lastScrollY = currentScrollY;
+  });
+  
   // Mobile menu toggle
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
   
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-      mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
-    });
-  }
-
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e: Event) {
-      e.preventDefault();
-      const href = (this as HTMLAnchorElement).getAttribute('href');
-      if (href) {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-          // Close mobile menu after click
-          mobileMenu?.classList.add('hidden');
-          mobileMenuBtn?.setAttribute('aria-expanded', 'false');
-        }
-      }
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  });
+  
+  // Close mobile menu on link click
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
     });
   });
 </script>
 
 <style>
-  :global(.logo-isotype) {
-    width: 36px;
-    height: 36px;
-    background-color: #7c3aed;
-    mask: url('/logos/mesa-isotipo.png') center/contain no-repeat;
-    -webkit-mask: url('/logos/mesa-isotipo.png') center/contain no-repeat;
-    display: inline-block;
+  header {
+    transition: all 0.3s ease;
   }
 </style>
+
 

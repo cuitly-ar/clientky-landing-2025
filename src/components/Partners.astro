@@ -1,0 +1,84 @@
+---
+import { getTranslations, type Language } from '../i18n/translations';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+
+// Partners with normalized max heights based on their aspect ratios
+const partners = [
+  { name: 'Google Cloud', logo: '/logos/partners/gogole.png', width: 'w-28' },
+  { name: 'Microsoft', logo: '/logos/partners/microsoft.png', width: 'w-32' },
+  { name: 'AWS', logo: '/logos/partners/aws.png', width: 'w-16' },
+  { name: 'Databricks', logo: '/logos/partners/databricks.png', width: 'w-36' },
+  { name: 'ServiceNow', logo: '/logos/partners/servicenow.png', width: 'w-32' },
+];
+---
+
+<section class="relative py-16 overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-dark">
+    <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+  </div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-6">
+    <!-- Section Header -->
+    <div class="text-center mb-10 animate-on-scroll">
+      <p class="text-text-muted text-sm md:text-base">
+        {t.partners.title}
+      </p>
+    </div>
+    
+    <!-- Partners Row - Single line with horizontal scroll on mobile -->
+    <div class="overflow-x-auto pb-4 -mx-6 px-6 scrollbar-hide">
+      <div class="flex items-center justify-center gap-8 md:gap-12 lg:gap-16 min-w-max animate-on-scroll">
+        {partners.map((partner, index) => (
+          <div 
+            class="group flex items-center justify-center h-16 px-2"
+            style={`animation-delay: ${index * 50}ms;`}
+          >
+            <img 
+              src={partner.logo} 
+              alt={partner.name}
+              class={`${partner.width} max-h-14 object-contain partner-logo transition-all duration-300`}
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Additional text -->
+    <p class="text-center text-xs text-text-muted mt-6 animate-on-scroll">
+      {lang === 'en' 
+        ? 'Plus expertise across 50+ additional technologies'
+        : 'Además de experiencia en más de 50 tecnologías adicionales'
+      }
+    </p>
+  </div>
+</section>
+
+<style>
+  /* Partner logo styling for dark background */
+  .partner-logo {
+    filter: brightness(0) invert(1);
+    opacity: 0.5;
+  }
+  
+  .partner-logo:hover {
+    opacity: 0.85;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>

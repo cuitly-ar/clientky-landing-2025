@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import JobApplication from '../../components/JobApplication.astro';
+const lang = 'en';
+
+const position = {
+  id: 'growth-marketing-specialist',
+  title: 'Semi Senior, Growth Marketing Specialist (Paid Media)',
+  department: 'Operations',
+  location: 'Argentina',
+  type: 'Full-time',
+  mode: 'Remote',
+  experience: '2 - 3.5 years',
+  description: 'As a Growth Marketing Specialist, you will lead paid media strategy and execution for multiple clients. You will be responsible for developing comprehensive growth strategies, managing significant ad budgets, and driving measurable results through data-driven optimization.',
+  responsibilities: [
+    'Develop and execute paid media strategies across Google, Meta, LinkedIn, and emerging platforms.',
+    'Manage client relationships and present performance reports and strategic recommendations.',
+    'Lead A/B testing programs and conversion rate optimization initiatives.',
+    'Analyze campaign data to identify insights and optimization opportunities.',
+    'Collaborate with creative teams to develop high-performing ad content.',
+    'Manage and optimize advertising budgets to maximize ROI.',
+    'Stay current with platform updates and industry best practices.',
+    'Mentor junior team members and share knowledge.',
+    'Implement tracking and attribution solutions.',
+  ],
+  requirements: [
+    'At least 2 years of experience in growth marketing or paid media.',
+    'Proven track record of managing successful paid campaigns with measurable results.',
+    'Strong analytical skills and proficiency with analytics tools.',
+    'Experience with Google Ads, Meta Ads Manager, and at least one additional platform.',
+    'Understanding of attribution models and conversion tracking.',
+    'Excellent communication and presentation skills.',
+    'Advanced English proficiency.',
+    'Ability to manage multiple clients and projects simultaneously.',
+  ],
+  niceToHave: [
+    'Experience with programmatic advertising',
+    'Knowledge of marketing automation tools',
+    'Experience with TikTok or LinkedIn Ads',
+    'SQL or data analysis skills',
+  ],
+  requiredSkills: ['Google Ads', 'Meta Ads', 'Google Analytics', 'Data Analysis', 'Campaign Optimization', 'Attribution'],
+  questions: [
+    'What is the largest ad budget you have managed and what results did you achieve?',
+    'Describe your approach to developing a paid media strategy for a new client.',
+    'How do you handle underperforming campaigns?',
+    'What tools do you use for campaign analysis and reporting?',
+  ]
+};
+---
+
+<Layout title={`${position.title} - Careers`} lang={lang}>
+  <Header lang={lang} />
+  <main class="pt-24 pb-16 px-6">
+    <JobApplication lang={lang} position={position} />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+

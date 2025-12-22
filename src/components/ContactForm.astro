@@ -1,0 +1,252 @@
+---
+import { getTranslations, type Language } from '../i18n/translations';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<section id="contact" class="relative py-24 md:py-32 overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-dark">
+    <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+    <div class="absolute top-1/4 left-0 w-[600px] h-[600px] bg-accent-purple/10 rounded-full blur-[150px]"></div>
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-accent-cyan/10 rounded-full blur-[150px]"></div>
+  </div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      
+      <!-- Left Column - Info -->
+      <div class="animate-on-scroll">
+        <!-- Tag -->
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-[2px] bg-gradient-to-r from-accent-cyan to-transparent"></div>
+          <span class="text-accent-cyan font-mono text-sm uppercase tracking-wider">{t.contact.tag}</span>
+        </div>
+        
+        <!-- Title -->
+        <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-text-primary mb-6">
+          {t.contact.title}
+        </h2>
+        
+        <!-- Subtitle -->
+        <p class="text-lg text-text-secondary mb-10">
+          {t.contact.subtitle}
+        </p>
+        
+        <!-- Contact Info Cards -->
+        <div class="space-y-4">
+          <!-- LinkedIn -->
+          <a 
+            href="https://linkedin.com/company/clientky"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center gap-4 p-4 rounded-xl bg-dark-50 border border-dark-200 hover:border-accent-purple/30 transition-all"
+          >
+            <div class="w-12 h-12 rounded-xl bg-accent-purple/10 flex items-center justify-center group-hover:bg-accent-purple/20 transition-colors">
+              <svg class="w-5 h-5 text-accent-purple" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm text-text-muted">{lang === 'en' ? 'Follow us on' : 'Síguenos en'}</p>
+              <p class="text-text-primary font-medium group-hover:text-accent-purple transition-colors">LinkedIn</p>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Trust Badge -->
+        <div class="mt-10 p-6 rounded-2xl bg-gradient-to-r from-dark-100 to-dark-50 border border-dark-200">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-accent-emerald/10 flex items-center justify-center">
+              <svg class="w-7 h-7 text-accent-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-text-primary font-semibold">
+                {lang === 'en' ? 'Response within 24 hours' : 'Respuesta en 24 horas'}
+              </p>
+              <p class="text-sm text-text-muted">
+                {lang === 'en' ? 'We value your time and respond quickly' : 'Valoramos tu tiempo y respondemos rápido'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column - Form -->
+      <div class="animate-on-scroll animate-slide-in-right">
+        <form 
+          id="contact-form"
+          class="p-8 md:p-10 rounded-3xl bg-dark-50 border border-dark-200 shadow-xl"
+        >
+          <!-- Form Grid -->
+          <div class="grid sm:grid-cols-2 gap-6 mb-6">
+            <!-- Name -->
+            <div class="sm:col-span-2">
+              <label for="name" class="block text-sm font-medium text-text-primary mb-2">
+                {t.contact.form.name} <span class="text-accent-cyan">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required
+                placeholder={t.contact.form.namePlaceholder}
+                class="w-full px-4 py-3 rounded-xl bg-dark-100 border border-dark-300 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-all"
+              />
+            </div>
+            
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-text-primary mb-2">
+                {t.contact.form.email} <span class="text-accent-cyan">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required
+                placeholder={t.contact.form.emailPlaceholder}
+                class="w-full px-4 py-3 rounded-xl bg-dark-100 border border-dark-300 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-all"
+              />
+            </div>
+            
+            <!-- Company -->
+            <div>
+              <label for="company" class="block text-sm font-medium text-text-primary mb-2">
+                {t.contact.form.company}
+              </label>
+              <input 
+                type="text" 
+                id="company" 
+                name="company" 
+                placeholder={t.contact.form.companyPlaceholder}
+                class="w-full px-4 py-3 rounded-xl bg-dark-100 border border-dark-300 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-all"
+              />
+            </div>
+            
+            <!-- Role -->
+            <div>
+              <label for="role" class="block text-sm font-medium text-text-primary mb-2">
+                {t.contact.form.role}
+              </label>
+              <input 
+                type="text" 
+                id="role" 
+                name="role" 
+                placeholder={t.contact.form.rolePlaceholder}
+                class="w-full px-4 py-3 rounded-xl bg-dark-100 border border-dark-300 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-all"
+              />
+            </div>
+            
+            <!-- Area of Interest -->
+            <div>
+              <label for="interest" class="block text-sm font-medium text-text-primary mb-2">
+                {t.contact.form.interest}
+              </label>
+              <select 
+                id="interest" 
+                name="interest"
+                class="w-full px-4 py-3 rounded-xl bg-dark-100 border border-dark-300 text-text-primary focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-all appearance-none cursor-pointer"
+                style="background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 20 20%27%3E%3Cpath stroke=%27%2364748b%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%271.5%27 d=%27m6 8 4 4 4-4%27/%3E%3C/svg%3E'); background-position: right 0.75rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em; padding-right: 2.5rem;"
+              >
+                <option value="" disabled selected class="text-text-muted">{t.contact.form.interestPlaceholder}</option>
+                {t.contact.form.interestOptions.map((option) => (
+                  <option value={option}>{option}</option>
+                ))}
+              </select>
+            </div>
+            
+            <!-- Message -->
+            <div class="sm:col-span-2">
+              <label for="message" class="block text-sm font-medium text-text-primary mb-2">
+                {t.contact.form.message} <span class="text-accent-cyan">*</span>
+              </label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="4"
+                required
+                placeholder={t.contact.form.messagePlaceholder}
+                class="w-full px-4 py-3 rounded-xl bg-dark-100 border border-dark-300 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-all resize-none"
+              ></textarea>
+            </div>
+          </div>
+          
+          <!-- Submit Button -->
+          <button 
+            type="submit"
+            id="submit-btn"
+            class="w-full py-4 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-purple text-white font-semibold text-lg transition-all hover:shadow-xl hover:shadow-accent-cyan/25 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          >
+            <span id="btn-text">{t.contact.form.submit}</span>
+            <svg id="btn-spinner" class="hidden w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </button>
+          
+          <!-- Status Message -->
+          <div id="form-status" class="hidden mt-4 p-4 rounded-xl text-center"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ successMessage: t.contact.form.success, errorMessage: t.contact.form.error, submittingText: t.contact.form.submitting, submitText: t.contact.form.submit }}>
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const btnText = document.getElementById('btn-text');
+  const btnSpinner = document.getElementById('btn-spinner');
+  const formStatus = document.getElementById('form-status');
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    btnText.textContent = submittingText;
+    btnSpinner.classList.remove('hidden');
+    formStatus.classList.add('hidden');
+    
+    // Simulate form submission (replace with actual API call)
+    try {
+      // Get form data
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // For now, just log the data (replace with actual submission)
+      console.log('Form submitted:', data);
+      
+      // Show success message
+      formStatus.classList.remove('hidden', 'bg-red-500/10', 'text-red-400');
+      formStatus.classList.add('bg-accent-emerald/10', 'text-accent-emerald');
+      formStatus.textContent = successMessage;
+      
+      // Reset form
+      form.reset();
+      
+    } catch (error) {
+      // Show error message
+      formStatus.classList.remove('hidden', 'bg-accent-emerald/10', 'text-accent-emerald');
+      formStatus.classList.add('bg-red-500/10', 'text-red-400');
+      formStatus.textContent = errorMessage;
+    } finally {
+      // Reset button
+      submitBtn.disabled = false;
+      btnText.textContent = submitText;
+      btnSpinner.classList.add('hidden');
+    }
+  });
+</script>
+

@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import JobApplication from '../../components/JobApplication.astro';
+const lang = 'en';
+
+const position = {
+  id: 'junior-growth-marketer',
+  title: 'Junior, Growth Marketer (Paid Media)',
+  department: 'Operations',
+  location: 'Argentina',
+  type: 'Full-time',
+  mode: 'Remote',
+  experience: '1 - 2.5 years',
+  description: 'As a Junior Growth Marketer, you will support the execution of paid media campaigns across multiple platforms. You will work closely with senior team members to optimize campaigns, analyze performance data, and contribute to client growth strategies.',
+  responsibilities: [
+    'Support the creation and management of paid advertising campaigns across Google Ads, Meta Ads, and other platforms.',
+    'Monitor campaign performance and compile regular reports.',
+    'Assist in A/B testing and optimization strategies.',
+    'Collaborate with the creative team to develop ad copy and visuals.',
+    'Research industry trends and competitor strategies.',
+    'Help maintain client communication and campaign documentation.',
+    'Support budget management and pacing across campaigns.',
+    'Contribute to growth experiments and new channel exploration.',
+  ],
+  requirements: [
+    'At least 1 year of experience in digital marketing or paid media.',
+    'Basic understanding of Google Ads, Meta Ads Manager, or similar platforms.',
+    'Analytical mindset with attention to detail.',
+    'Basic Excel/Google Sheets skills for data analysis.',
+    'Good communication skills in English and Spanish.',
+    'Eagerness to learn and grow in performance marketing.',
+    'Ability to work independently in a remote environment.',
+  ],
+  niceToHave: [
+    'Google Ads or Meta Blueprint certifications',
+    'Experience with analytics tools like Google Analytics',
+    'Basic understanding of attribution models',
+    'Knowledge of landing page optimization',
+  ],
+  requiredSkills: ['Google Ads', 'Meta Ads', 'Analytics', 'Excel', 'Digital Marketing'],
+  questions: [
+    'What paid media platforms have you worked with?',
+    'Describe a campaign you helped optimize and what results you achieved.',
+    'How do you stay updated with digital marketing trends?',
+    'What metrics do you consider most important for measuring campaign success?',
+  ]
+};
+---
+
+<Layout title={`${position.title} - Careers`} lang={lang}>
+  <Header lang={lang} />
+  <main class="pt-24 pb-16 px-6">
+    <JobApplication lang={lang} position={position} />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+

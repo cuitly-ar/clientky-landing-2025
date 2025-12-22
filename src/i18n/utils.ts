@@ -1,31 +1,44 @@
-import { translations, type Language, type TranslationKey } from './translations';
+import type { Language } from './translations';
 
-function getLangFromPathname(pathname: string): Language | null {
-  const segments = pathname.split('/').filter(Boolean);
-  const maybeLang = segments[0]?.toLowerCase();
-  if (maybeLang === 'en') return 'en';
-  if (maybeLang === 'es') return 'es';
-  return null;
+export function getLangFromUrl(url: URL): Language {
+  const pathname = url.pathname;
+  if (pathname.startsWith('/es')) {
+    return 'es';
+  }
+  return 'en';
 }
 
-export function getLanguage(url: URL): Language {
-  const pathLang = getLangFromPathname(url.pathname);
-  if (pathLang) return pathLang;
-
-  const queryLang = url.searchParams.get('lang');
-  if (queryLang === 'en') return 'en';
-
-  return 'es';
+export function getLocalizedPath(path: string, lang: Language): string {
+  // Remove leading slash if present
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  
+  // For English (default), use root path
+  if (lang === 'en') {
+    return cleanPath ? `/${cleanPath}` : '/';
+  }
+  
+  // For Spanish, prefix with /es
+  return cleanPath ? `/es/${cleanPath}` : '/es';
 }
 
-export function t(lang: Language, key: TranslationKey): string {
-  const langPack = translations[lang] ?? translations.es;
-  return langPack[key] ?? translations.es[key] ?? '';
+export function getAlternateLanguage(currentLang: Language): Language {
+  return currentLang === 'en' ? 'es' : 'en';
 }
 
-export function switchLanguage(currentLang: Language): Language {
-  return currentLang === 'es' ? 'en' : 'es';
+export function getLanguageName(lang: Language): string {
+  const names: Record<Language, string> = {
+    en: 'English',
+    es: 'Español',
+  };
+  return names[lang];
 }
 
+export function getLanguageFlag(lang: Language): string {
+  const flags: Record<Language, string> = {
+    en: '🇺🇸',
+    es: '🇪🇸',
+  };
+  return flags[lang];
+}
 
 

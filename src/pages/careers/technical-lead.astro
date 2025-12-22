@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import JobApplication from '../../components/JobApplication.astro';
+const lang = 'en';
+
+const position = {
+  id: 'technical-lead',
+  title: 'Technical Lead (Engineering/Architect)',
+  department: 'Operations',
+  location: 'Argentina',
+  type: 'Full-time',
+  mode: 'Remote',
+  experience: '4.5+ years',
+  description: 'As a Technical Lead, you will guide the technical direction of complex data and AI projects. You will be responsible for architectural decisions, mentoring team members, and ensuring the delivery of high-quality, scalable solutions that meet client needs.',
+  responsibilities: [
+    'Lead technical architecture and design decisions for data and AI projects.',
+    'Define technical standards, best practices, and coding guidelines.',
+    'Mentor and guide development team members.',
+    'Collaborate with project managers and clients to understand requirements and propose solutions.',
+    'Conduct code reviews and ensure code quality.',
+    'Evaluate and recommend new technologies and tools.',
+    'Participate in technical pre-sales activities and solution design.',
+    'Troubleshoot complex technical issues.',
+    'Ensure security, scalability, and performance of solutions.',
+    'Document technical architectures and decisions.',
+  ],
+  requirements: [
+    'At least 4.5 years of software development experience with at least 2 years in a technical leadership role.',
+    'Strong experience with Python and modern data engineering tools.',
+    'Experience designing and implementing data architectures and pipelines.',
+    'Knowledge of cloud platforms (AWS, GCP, or Azure).',
+    'Experience with databases (SQL and NoSQL) and data warehousing.',
+    'Understanding of ML/AI concepts and their practical applications.',
+    'Excellent problem-solving and communication skills.',
+    'Advanced English proficiency.',
+    'Experience with agile methodologies.',
+  ],
+  niceToHave: [
+    'Experience with Databricks, Snowflake, or similar platforms',
+    'Knowledge of orchestration tools (Airflow, Prefect)',
+    'Experience with containerization and Kubernetes',
+    'Background in consulting or professional services',
+  ],
+  requiredSkills: ['Python', 'SQL', 'Cloud Platforms', 'Data Architecture', 'ETL', 'Team Leadership', 'System Design'],
+  questions: [
+    'Describe a complex technical architecture you designed and implemented.',
+    'How do you approach mentoring junior developers?',
+    'What is your experience with data pipelines and ETL processes?',
+    'How do you balance technical debt with feature development?',
+  ]
+};
+---
+
+<Layout title={`${position.title} - Careers`} lang={lang}>
+  <Header lang={lang} />
+  <main class="pt-24 pb-16 px-6">
+    <JobApplication lang={lang} position={position} />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+

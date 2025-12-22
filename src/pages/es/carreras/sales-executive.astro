@@ -1,0 +1,61 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import JobApplication from '../../../components/JobApplication.astro';
+const lang = 'es';
+
+const position = {
+  id: 'sales-executive',
+  title: 'Sales Executive (Creative & Media)',
+  department: 'Ventas',
+  location: 'Argentina',
+  type: 'Tiempo completo',
+  mode: 'Remoto',
+  experience: '+ 4.5 años',
+  description: 'Como Sales Executive, serás responsable de impulsar el crecimiento de ingresos identificando, desarrollando y cerrando nuevas oportunidades de negocio en el espacio creativo y de medios. Trabajarás con clientes para entender sus necesidades y posicionar nuestras soluciones de datos e IA para ayudarlos a alcanzar sus objetivos.',
+  responsibilities: [
+    'Identificar y desarrollar nuevas oportunidades de negocio en mercados objetivo.',
+    'Construir y mantener relaciones con tomadores de decisiones y stakeholders clave.',
+    'Entender las necesidades del cliente y presentar soluciones adaptadas que aborden sus desafíos.',
+    'Liderar el ciclo de ventas completo desde prospección hasta cierre de deals.',
+    'Colaborar con equipos de delivery para asegurar transiciones de proyectos fluidas.',
+    'Cumplir y superar objetivos de ventas y KPIs.',
+    'Mantener pipeline y forecasting precisos en sistemas CRM.',
+    'Representar a Clientky en eventos de la industria y oportunidades de networking.',
+    'Contribuir a la estrategia de ventas e iniciativas de expansión de mercado.',
+  ],
+  requirements: [
+    'Al menos 4.5 años de experiencia en ventas B2B, preferiblemente en servicios de tecnología, datos o medios.',
+    'Historial comprobado de cumplir o superar objetivos de ventas.',
+    'Fuerte entendimiento de metodologías de venta consultiva.',
+    'Excelentes habilidades de presentación y negociación.',
+    'Experiencia con sistemas CRM (HubSpot, Salesforce, etc.).',
+    'Dominio avanzado del inglés para clientes internacionales.',
+    'Auto-motivado con capacidad de trabajar de forma independiente.',
+    'Red de contactos fuerte en la industria de tecnología o medios.',
+  ],
+  niceToHave: [
+    'Experiencia vendiendo soluciones de datos o IA',
+    'Background en marketing digital o agencias de medios',
+    'Conocimiento del mercado LATAM',
+    'Experiencia con ciclos de ventas enterprise',
+  ],
+  requiredSkills: ['Ventas B2B', 'Venta Consultiva', 'CRM', 'Negociación', 'Desarrollo de Negocios'],
+  questions: [
+    '¿Cuál es el deal más grande que has cerrado y cuál fue tu enfoque?',
+    '¿Cómo construyes típicamente relaciones con nuevos prospectos?',
+    'Describe tu experiencia vendiendo servicios de tecnología o datos.',
+    '¿Cómo manejas las objeciones durante el proceso de ventas?',
+  ]
+};
+---
+
+<Layout title={`${position.title} - Carreras`} lang={lang}>
+  <Header lang={lang} />
+  <main class="pt-24 pb-16 px-6">
+    <JobApplication lang={lang} position={position} />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+

@@ -1,0 +1,61 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import JobApplication from '../../../components/JobApplication.astro';
+const lang = 'es';
+
+const position = {
+  id: 'growth-marketing-specialist',
+  title: 'Semi Senior, Growth Marketing Specialist (Paid Media)',
+  department: 'Operaciones',
+  location: 'Argentina',
+  type: 'Tiempo completo',
+  mode: 'Remoto',
+  experience: '2 - 3.5 años',
+  description: 'Como Growth Marketing Specialist, liderarás la estrategia y ejecución de medios pagos para múltiples clientes. Serás responsable de desarrollar estrategias de crecimiento integrales, gestionar presupuestos publicitarios significativos e impulsar resultados medibles a través de optimización basada en datos.',
+  responsibilities: [
+    'Desarrollar y ejecutar estrategias de medios pagos en Google, Meta, LinkedIn y plataformas emergentes.',
+    'Gestionar relaciones con clientes y presentar reportes de rendimiento y recomendaciones estratégicas.',
+    'Liderar programas de A/B testing e iniciativas de optimización de tasa de conversión.',
+    'Analizar datos de campañas para identificar insights y oportunidades de optimización.',
+    'Colaborar con equipos creativos para desarrollar contenido de anuncios de alto rendimiento.',
+    'Gestionar y optimizar presupuestos publicitarios para maximizar ROI.',
+    'Mantenerse actualizado con actualizaciones de plataformas y mejores prácticas de la industria.',
+    'Mentorear a miembros junior del equipo y compartir conocimientos.',
+    'Implementar soluciones de tracking y atribución.',
+  ],
+  requirements: [
+    'Al menos 2 años de experiencia en growth marketing o medios pagos.',
+    'Historial comprobado de gestión de campañas exitosas con resultados medibles.',
+    'Fuertes habilidades analíticas y dominio de herramientas de analytics.',
+    'Experiencia con Google Ads, Meta Ads Manager y al menos una plataforma adicional.',
+    'Entendimiento de modelos de atribución y tracking de conversiones.',
+    'Excelentes habilidades de comunicación y presentación.',
+    'Dominio avanzado del inglés.',
+    'Capacidad de gestionar múltiples clientes y proyectos simultáneamente.',
+  ],
+  niceToHave: [
+    'Experiencia con publicidad programática',
+    'Conocimiento de herramientas de automatización de marketing',
+    'Experiencia con TikTok o LinkedIn Ads',
+    'Habilidades de SQL o análisis de datos',
+  ],
+  requiredSkills: ['Google Ads', 'Meta Ads', 'Google Analytics', 'Análisis de Datos', 'Optimización de Campañas', 'Atribución'],
+  questions: [
+    '¿Cuál es el presupuesto publicitario más grande que has gestionado y qué resultados lograste?',
+    'Describe tu enfoque para desarrollar una estrategia de medios pagos para un nuevo cliente.',
+    '¿Cómo manejas campañas con bajo rendimiento?',
+    '¿Qué herramientas usas para análisis y reportes de campañas?',
+  ]
+};
+---
+
+<Layout title={`${position.title} - Carreras`} lang={lang}>
+  <Header lang={lang} />
+  <main class="pt-24 pb-16 px-6">
+    <JobApplication lang={lang} position={position} />
+  </main>
+  <Footer lang={lang} />
+</Layout>
+
