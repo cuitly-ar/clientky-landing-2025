@@ -242,6 +242,13 @@ const t = getTranslations(lang);
       formStatus.classList.add('bg-accent-emerald/10', 'text-accent-emerald');
       formStatus.textContent = successMessage;
       
+      // Conversion tracking for Google Ads lead submission
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          send_to: 'AW-16764699036/jhpYCOGjgdYbEJyDhLo-'
+        });
+      }
+      
       // Reset form
       form.reset();
       
