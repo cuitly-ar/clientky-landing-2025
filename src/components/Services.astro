@@ -37,8 +37,8 @@ const services = [
   <!-- Background -->
   <div class="absolute inset-0 bg-dark">
     <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
-    <div class="absolute top-1/2 left-0 w-[600px] h-[600px] bg-accent-cyan/5 rounded-full blur-[150px]"></div>
-    <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-accent-purple/5 rounded-full blur-[150px]"></div>
+    <div class="section-orb absolute top-1/2 left-0 w-[600px] h-[600px] bg-accent-cyan/5 rounded-full"></div>
+    <div class="section-orb absolute bottom-0 right-0 w-[600px] h-[600px] bg-accent-purple/5 rounded-full"></div>
   </div>
   
   <div class="relative z-10 max-w-7xl mx-auto px-6">
@@ -71,8 +71,8 @@ const services = [
               <!-- Gradient Accent -->
               <div class={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${service.gradient}`}></div>
               
-              <!-- Glow Effect -->
-              <div class={`absolute top-0 right-0 w-64 h-64 bg-${service.accentColor}/5 rounded-full blur-[100px] transition-all duration-500 group-hover:bg-${service.accentColor}/10`}></div>
+              <!-- Glow Effect - Hidden on mobile for performance -->
+              <div class={`hidden md:block absolute top-0 right-0 w-64 h-64 bg-${service.accentColor}/5 rounded-full blur-[60px] transition-all duration-500 group-hover:bg-${service.accentColor}/10`}></div>
               
               <!-- Icon & Title -->
               <div class="relative flex items-start gap-5 mb-6">

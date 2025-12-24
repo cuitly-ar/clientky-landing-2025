@@ -181,6 +181,73 @@ const alternateURL = new URL(getLocalizedPath('', alternateLang), Astro.site);
       .animate-on-scroll.is-visible.animate-scale-in {
         transform: translateX(0) scale(1);
       }
+      
+      /* ============================================
+         SECTION ORB STYLES (Performance Optimized)
+         ============================================ */
+      .section-orb {
+        filter: blur(100px);
+      }
+      
+      /* ============================================
+         MOBILE PERFORMANCE OPTIMIZATIONS
+         ============================================ */
+      
+      /* On mobile: disable heavy blur effects */
+      @media (max-width: 768px) {
+        /* Make scroll animations visible by default on mobile */
+        .animate-on-scroll {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        
+        /* Reduce section orb blur on mobile */
+        .section-orb {
+          filter: blur(40px) !important;
+          opacity: 0.5;
+          width: 50% !important;
+          height: 50% !important;
+        }
+        
+        /* Disable expensive blur effects on mobile */
+        .blur-\[120px\],
+        .blur-\[150px\],
+        .blur-\[100px\],
+        .blur-\[60px\] {
+          filter: blur(30px) !important;
+        }
+        
+        /* Disable continuous animations on mobile */
+        .animate-float {
+          animation: none !important;
+        }
+        
+        .animate-pulse-glow {
+          animation: none !important;
+        }
+        
+        /* Simplify backdrop blur on mobile */
+        .glass {
+          backdrop-filter: blur(8px) !important;
+          -webkit-backdrop-filter: blur(8px) !important;
+        }
+      }
+      
+      /* Respect user preference for reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .animate-on-scroll {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+        
+        .animate-float,
+        .animate-pulse,
+        .animate-pulse-glow,
+        .animate-bounce {
+          animation: none !important;
+        }
+      }
     </style>
   </head>
   <body class="bg-dark text-text-primary">
